@@ -6,7 +6,7 @@ const Button = ({ children, href, className, onClick, px, white }) => {
   } ${white ? "text-n-8 " : "text-n-1"} ${className || ""} rounded`;
 
   const renderButton = () => (
-    <button className={classes}>
+    <button className={classes} onClick={onClick}>
       <span>{children}</span>
     </button>
   );

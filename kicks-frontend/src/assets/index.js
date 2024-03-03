@@ -21,7 +21,9 @@ import disc02 from "./disc-02.svg";
 import chromecast from "./chrome-cast.svg";
 import sliders04 from "./sliders-04.svg";
 import loading from "./loading.png";
-import background from "./background.jpg";
+import shoe_background from "./shoe_background.jpg";
+import shoe_1 from "./shoe_1.jpg";
+import shoes_2 from "./shoes_2.jpg";
 
 import curve from "./hero/curve.png";
 import robot from "./hero/robot.jpg";
@@ -84,6 +86,8 @@ export {
   check,
   check2,
   loading1,
+  shoe_1,
+  shoes_2,
   brainwaveSymbol,
   brainwaveWhiteSymbol,
   play,
@@ -101,7 +105,7 @@ export {
   chromecast,
   sliders04,
   loading,
-  background,
+  shoe_background,
   curve,
   robot,
   heroBackground,
