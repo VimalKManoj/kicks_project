@@ -1,6 +1,12 @@
 import Shoe_logo from "./Shoe_logo.svg";
 import kicks_logo from "./kicks_logo.png";
 import kicks_logo_png from "./kicks_logo.png";
+import new_balance_1 from "./new_balance_1.jpeg";
+import new_balance_2 from "./new_balance_2.jpeg";
+import nike_air_force_1 from "./nike_air-force-1.jpg";
+import air_jordan from "./air-jordan-5.jpg";
+
+
 import check from "./check.svg";
 import brainwaveSymbol from "./brainwave-symbol.svg";
 import brainwaveWhiteSymbol from "./brainwave-symbol-white.svg";
@@ -23,7 +29,7 @@ import sliders04 from "./sliders-04.svg";
 import loading from "./loading.png";
 import shoe_background from "./shoe_background.jpg";
 import shoe_1 from "./shoe_1.jpg";
-import shoes_2 from "./shoes_2.jpg";
+import shoes_2 from "./shoe_2.png";
 
 import curve from "./hero/curve.png";
 import robot from "./hero/robot.jpg";
@@ -82,7 +88,11 @@ import twitter from "./socials/twitter.svg";
 export {
   Shoe_logo,
   kicks_logo,
+  new_balance_1,
+  new_balance_2,
+  nike_air_force_1,
   kicks_logo_png,
+  air_jordan,
   check,
   check2,
   loading1,

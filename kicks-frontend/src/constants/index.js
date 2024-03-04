@@ -326,3 +326,14 @@ import {
       url: "#",
     },
   ];
+
+//   {
+//     "brand": "Adidas",
+//     "category": "Running",
+//     "color": "Grey One",
+//     "name": "Adidas Ultraboost 21",
+//     "price": 180,
+//     "product_id": "011",
+//     "quantity": 20,
+//     "size": 9
+// }

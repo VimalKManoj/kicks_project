@@ -1,6 +1,15 @@
 import React, { useRef } from "react";
 import Section from "./Section";
-import { shoe_1, shoe_background, shoes_2 } from "../assets";
+import { ArrowDownRightIcon } from "@heroicons/react/24/solid";
+import {
+  air_jordan,
+  new_balance_1,
+  new_balance_2,
+  nike_air_force_1,
+  shoe_1,
+  shoe_background,
+  shoes_2,
+} from "../assets";
 import { BackgroundCircles, BottomLine, Gradient } from "../design/Hero";
 import { ScrollParallax } from "react-just-parallax";
 import Button from "./Button";
@@ -58,7 +67,7 @@ const Hero = () => {
                       <div className=" aspect-[40/30] lg:aspect-auto rounded-[0.9rem] overflow-hidden">
                         <img
                           src={shoes_2}
-                          className=" w-[9rem] "
+                          className=" w-[12rem] scale-[1.4] lg:scale-[1.2]"
                           width={1440}
                           height={1}
                         />
@@ -72,29 +81,71 @@ const Hero = () => {
           <BackgroundCircles />
         </div>
         <div className="container px-9 md:px-20  lg:py-0 xl:-mt-12">
-          <h1 className="text-2xl lg:text-7xl xl:text-8xl mb-6 uppercase">
+          <h1 className="text-3xl lg:text-7xl xl:text-8xl  xl:  ml-10 uppercase">
             Don't miss out
             <br />
-            <span className=" inline-block text-right mx-auto w-full ">
+            <span className=" flex justify-end items-center text-right mx-auto w-full  ">
               new drops
-              <Button>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="m4.5 4.5 15 15m0 0V8.25m0 11.25H8.25"
-                  />
-                </svg>
+              <Button className="text-n-8 hover:text-color-1 ">
+                <ArrowDownRightIcon className="h-[2rem] w-[2rem] lg:h-[4rem] lg:w-[4rem] xl:h-[6rem] xl:w-[6rem]" />
               </Button>
             </span>
           </h1>
+        </div>
+      </Section>
+      <Section>
+        <div className="container">
+          <div className="relative">
+            <div className="relative z-1 grid gap-1 lg:grid-cols-2">
+              <div className="relative min-h-[39rem] border border-n-1/90 rounded-3xl overflow-hidden">
+                <div className="absolute inset-0 cursor-pointer">
+                  <img
+                    src={new_balance_1}
+                    className="z-4 h-full w-full object-cover hover:opacity-0 transition-opacity"
+                    width={630}
+                    height={750}
+                    alt="robot"
+                  />
+                  <img
+                    src={new_balance_2}
+                    className="-z-1 absolute top-0 w-full h-full object-cover opacity-1 transition-opacity "
+                    width={800}
+                    height={730}
+                  />
+                </div>
+
+                <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none">
+                  <h4 className="h4 mb-4  text-n-3 font-grotesk">
+                    9060 New Balance
+                  </h4>
+                </div>
+              </div>
+
+              <div className="p-1  flex gap-1 flex-col justify-end rounded-3xl overflow-hidden lg:min-h-[46rem] max-h-[46rem] ">
+                <div className="relative h-[20rem] bg-n-1 rounded-3xl overflow-hidden md:h-[25rem] border border-n-1/90 cursor-pointer">
+                  <img
+                    src={air_jordan}
+                    className="h-full object-cover  "
+                    // width={520}
+                    // height={400}
+                    alt="Scary robot"
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none"></div>
+                </div>
+
+                <div className="relative gap-1 h-[20rem] bg-n-8 rounded-3xl overflow-hidden md:h-[25rem] border border-n-1/90 cursor-pointer">
+                  <img
+                    src={nike_air_force_1}
+                    className="w-full object-cover xl:-translate-y-[15rem]"
+                    // width={520}
+                    // height={400}
+                    alt="Scary robot"
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </Section>
 
