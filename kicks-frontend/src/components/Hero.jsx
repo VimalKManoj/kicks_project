@@ -13,6 +13,8 @@ import {
 import { BackgroundCircles, BottomLine, Gradient } from "../design/Hero";
 import { ScrollParallax } from "react-just-parallax";
 import Button from "./Button";
+import Slider from "./swiper/Swiper";
+import Footer from "./Footer";
 const Hero = () => {
   const parallaxRef = useRef(null);
   return (
@@ -81,7 +83,7 @@ const Hero = () => {
           <BackgroundCircles />
         </div>
         <div className="container px-9 md:px-20  lg:py-0 xl:-mt-12">
-          <h1 className="text-3xl lg:text-7xl xl:text-8xl  xl:  ml-10 uppercase">
+          <h1 className="text-2xl font-semibold lg:text-7xl xl:text-8xl  xl:  ml-10 uppercase font-grotesk">
             Don't miss out
             <br />
             <span className=" flex justify-end items-center text-right mx-auto w-full  ">
@@ -115,7 +117,7 @@ const Hero = () => {
                 </div>
 
                 <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none">
-                  <h4 className="h4 mb-4  text-n-3 font-grotesk">
+                  <h4 className="h4 -mb-6  text-n-3 font-grotesk">
                     9060 New Balance
                   </h4>
                 </div>
@@ -130,7 +132,11 @@ const Hero = () => {
                     // height={400}
                     alt="Scary robot"
                   />
-                  <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none"></div>
+                  <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none">
+                    <h4 className="h4 -mb-6  text-n-3 font-grotesk">
+                      9060 New Balance
+                    </h4>
+                  </div>
                 </div>
 
                 <div className="relative gap-1 h-[20rem] bg-n-8 rounded-3xl overflow-hidden md:h-[25rem] border border-n-1/90 cursor-pointer">
@@ -141,15 +147,35 @@ const Hero = () => {
                     // height={400}
                     alt="Scary robot"
                   />
-                  <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none"></div>
+                  <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none">
+                    <h4 className="h4 -mb-6  text-n-3 font-grotesk">
+                      Air Force 1 'Cactus Jack'
+                    </h4>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </Section>
+      <Section>
+        <div className="container">
+          <div className="h2 flex justify-between mb-10 ">
+            <h2>REVIEWS</h2>
+            <Button className=" bg-color-1 xl:hover:text-n-1">SEE ALL</Button>
+          </div>
+        </div>
+        <div className=" hidden lg:block">
+          <Slider slidesPerView={3} />
+        </div>
 
-      {/* <BottomLine /> */}
+        <div className="lg:hidden xl:hidden">
+          <Slider slidesPerView={1} />
+        </div>
+      </Section>
+      <Section className="lg:py-10 xl:py-10" crosses>
+        <Footer />
+      </Section>
     </>
   );
 };
