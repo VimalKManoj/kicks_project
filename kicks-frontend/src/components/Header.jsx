@@ -4,6 +4,7 @@ import Button from "./Button";
 import MenuSvg from "../assets/svg/MenuSvg";
 import { HamburgerMenu } from "../design/Header";
 import { enablePageScroll, disablePageScroll } from "scroll-lock";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [openNavigation, setOpenNavigation] = useState(false);
@@ -41,12 +42,20 @@ const Header = () => {
             }  fixed top-[5rem] left-0 right-0 bottom-0 bg-n-1/90 lg:static lg:flex  lg:bg-transparent`}
           >
             <div className="relative z-2 flex flex-col items-center justify-center m-auto lg:flex-row ">
-              <a className={navElementClassLarge} onClick={handleClick}>
+              <Link
+                to="/products"
+                className={navElementClassLarge}
+                onClick={handleClick}
+              >
                 Products
-              </a>
-              <a className={navElementClassLarge} onClick={handleClick}>
+              </Link>
+              <Link
+                to="/reviews"
+                className={navElementClassLarge}
+                onClick={handleClick}
+              >
                 Reviews
-              </a>
+              </Link>
               <a className={navElementClassMobile} onClick={handleClick}>
                 New Account
               </a>
@@ -56,16 +65,19 @@ const Header = () => {
             </div>
             <HamburgerMenu />
           </nav>
-          <a className=" block w-[12rem] xl:mr-8" href="/">
+          <Link to="/" className=" block w-[12rem] xl:mr-8">
             <img src={kicks_logo_png} width={220} height={50} alt="Kicks" />
-          </a>
+          </Link>
 
           <div className="relative z-2 flex flex-row items-center  lg:flex-row ">
-            <a className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-12">
+            <Link
+              to="/signup"
+              className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-12"
+            >
               New Account
-            </a>
+            </Link>
             <Button className=" hidden lg:flex border-2 border-black hover:border-color-1  bg-black hover:bg-white mt-0">
-              Sign IN
+              <Link to="/login">Sign IN</Link>
             </Button>
 
             <Button

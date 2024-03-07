@@ -3,9 +3,12 @@ import Section from "./Section";
 import { ArrowDownRightIcon } from "@heroicons/react/24/solid";
 import {
   air_jordan,
+  air_jordan_1,
   new_balance_1,
   new_balance_2,
+  new_balance_3,
   nike_air_force_1,
+  nike_air_force_3,
   shoe_1,
   shoe_background,
   shoes_2,
@@ -102,7 +105,7 @@ const Hero = () => {
               <div className="relative min-h-[39rem] border border-n-1/90 rounded-3xl overflow-hidden">
                 <div className="absolute inset-0 cursor-pointer">
                   <img
-                    src={new_balance_1}
+                    src={new_balance_3}
                     className="z-4 h-full w-full object-cover hover:opacity-0 transition-opacity"
                     width={630}
                     height={750}
@@ -125,29 +128,50 @@ const Hero = () => {
 
               <div className="p-1  flex gap-1 flex-col justify-end rounded-3xl overflow-hidden lg:min-h-[46rem] max-h-[46rem] ">
                 <div className="relative h-[20rem] bg-n-1 rounded-3xl overflow-hidden md:h-[25rem] border border-n-1/90 cursor-pointer">
-                  <img
-                    src={air_jordan}
-                    className="h-full object-cover  "
-                    // width={520}
-                    // height={400}
-                    alt="Scary robot"
-                  />
-                  <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none">
+                  <div className="absolute inset-0 cursor-pointer">
+                    <img
+                      src={air_jordan_1}
+                      className="z-1 absolute xl:-translate-y-[10rem] object-fit hover:opacity-0 transition-opacity "
+                      width={650}
+                      height={400}
+                      alt="Scary robot"
+                    />
+
+                    <img
+                      src={air_jordan}
+                      className="z-1 h-full w-full object-cover opacity-1 transition-opacity "
+                      // width={520}
+                      // height={400}
+                      alt="Scary robot"
+                    />
+                  </div>
+                  <div className="z-3 absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none">
                     <h4 className="h4 -mb-6  text-n-3 font-grotesk">
-                      9060 New Balance
+                      Air Jordan 5 Retro
                     </h4>
                   </div>
                 </div>
 
                 <div className="relative gap-1 h-[20rem] bg-n-8 rounded-3xl overflow-hidden md:h-[25rem] border border-n-1/90 cursor-pointer">
-                  <img
-                    src={nike_air_force_1}
-                    className="w-full object-cover xl:-translate-y-[15rem]"
-                    // width={520}
-                    // height={400}
-                    alt="Scary robot"
-                  />
-                  <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none">
+                  <div className="absolute inset-0 cursor-pointer">
+                    <img
+                      src={nike_air_force_1}
+                      className="z-1 absolute w-full object-cover xl:-translate-y-[15rem] hover:opacity-0 transition-opacity "
+                      width={650}
+                      height={400}
+                      alt="Scary robot"
+                    />
+
+                    <img
+                      src={nike_air_force_3}
+                      className="z-1 h-full w-full xl:-translate-y-[2rem] xl:h-auto object-cover opacity-1 transition-opacity "
+                      width={520}
+                      // height={400}
+                      alt="Scary robot"
+                    />
+                  </div>
+
+                  <div className="z-1 absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-b from-n-8/0 to-n-8/80 lg:p-15 pointer-events-none">
                     <h4 className="h4 -mb-6  text-n-3 font-grotesk">
                       Air Force 1 'Cactus Jack'
                     </h4>
@@ -172,9 +196,6 @@ const Hero = () => {
         <div className="lg:hidden xl:hidden">
           <Slider slidesPerView={1} />
         </div>
-      </Section>
-      <Section className="lg:py-10 xl:py-10" crosses>
-        <Footer />
       </Section>
     </>
   );
