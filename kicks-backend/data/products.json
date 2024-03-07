@@ -1,414 +1,278 @@
 [
-    {
+  {
+    "brand": "New Balance",
+    "category": "lifestyle",
+    "color": "Grey",
+    "name": "New Balance 9060",
+    "price": 180,
+    "quantity": 20,
+    "images": [
+      "new_balance_9060_1.jpeg",
+      "new_balance_9060_2.jpeg",
+      "new_balance_9060_3.jpeg"
+    ]
+  },
+
+  {
     "brand": "Adidas",
-    "category": "Running",
-    "color": "Grey One",
+    "category": "running",
+    "color": "Grey",
     "name": "Adidas Ultraboost 21",
     "price": 180,
-    "product_id": "011",
     "quantity": 20,
-    "size": 9
-    },
-    {
-    "brand": "Reebok",
-    "category": "Training",
-    "color": "Black",
-    "name": "Reebok Nano X1",
-    "price": 130,
-    "product_id": "005",
-    "quantity": 25,
-    "size": 10.5
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Black",
-    "name": "Asics Nimbus 50",
-    "price": 150,
-    "product_id": "009",
-    "quantity": 15,
-    "size": 9
-    },
-    {
-    "brand": "Reebok",
-    "category": "Training",
-    "color": "White",
-    "name": "Reebok Nano X1",
-    "price": 130,
-    "product_id": "010",
-    "quantity": 25,
-    "size": 10.5
-    },
-    {
-    "brand": "Reebok",
-    "category": "Training",
-    "color": "Black",
-    "name": "Reebok Nano X1",
-    "price": 130,
-    "product_id": "005",
-    "quantity": 25,
-    "size": 10.5
-    },
-    {
-    "brand": "Adidas",
-    "category": "Running",
-    "color": "Grey One",
-    "name": "Adidas Ultraboost 21",
-    "price": 180,
-    "product_id": "007",
-    "quantity": 20,
-    "size": 9.5
-    },
-    {
-    "brand": "Reebok",
-    "category": "Training",
-    "color": "Black",
-    "name": "Reebok Nano X1",
-    "price": 130,
-    "product_id": "010",
-    "quantity": 25,
-    "size": 10.5
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Black",
-    "name": "Asics Nimbus 55",
-    "price": 150,
-    "product_id": "004",
-    "quantity": 15,
-    "size": 9
-    },
-    {
-    "brand": "Reebok",
-    "category": "Training",
-    "color": "Red",
-    "name": "Reebok Nano X1",
-    "price": 130,
-    "product_id": "005",
-    "quantity": 25,
-    "size": 10.5
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Silver",
-    "name": "Asics Nimbus 60",
-    "price": 150,
-    "product_id": "009",
-    "quantity": 15,
-    "size": 9
-    },
-    {
-    "brand": "Reebok",
-    "category": "Training",
-    "color": "Black",
-    "name": "Reebok Nano X1",
-    "price": 130,
-    "product_id": "010",
-    "quantity": 25,
-    "size": 10.5
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Black",
-    "name": "Asics Nimbus 70",
-    "price": 150,
-    "product_id": "004",
-    "quantity": 15,
-    "size": 9
-    },
-    {
-    "brand": "Reebok",
-    "category": "Training",
-    "color": "Blue",
-    "name": "Reebok Nano X1",
-    "price": 130,
-    "product_id": "005",
-    "quantity": 25,
-    "size": 10.5
-    },
-    {
+    "images": [
+      "adidas_ultraboost_21_1.jpg",
+      "adidas_ultraboost_21_2.jpg",
+      "adidas_ultraboost_21_3.jpg"
+    ]
+  },
+  {
     "brand": "Nike",
-    "category": "Running",
+    "category": "lifestyle",
+    "color": "Black",
+    "name": "Air Jordan 4 Retro",
+    "price": 280,
+    "quantity": 20,
+    "images": [
+      "air_jordan_retro_4_1.webp",
+      "air_jordan_retro_4_2.webp",
+      "air_jordan_retro_4_3.webp"
+    ]
+  },
+  {
+    "brand": "Nike",
+    "category": "lifestyle",
+    "color": "Olive",
+    "name": "Air Jordan 5 Retro",
+    "price": 280,
+    "quantity": 20,
+    "images": [
+      "air_jordan_retro_5_1.webp",
+      "air_jordan_retro_5_2.webp",
+      "air_jordan_retro_5_3.webp"
+    ]
+  },
+  {
+    "brand": "Reebok",
+    "category": "lifestyle",
+    "color": "White",
+    "name": "Reebok Classic Leather Legacy",
+    "price": 130,
+    "quantity": 25,
+    "images": [
+      "reebok_classic_1.webp",
+      "reebok_classic_2.webp",
+      "reebok_classic_3.webp"
+    ]
+  },
+  {
+    "brand": "Reebok",
+    "category": "lifestyle",
+    "color": "Yellow",
+    "name": "Reebok InstaPump Fury OG",
+    "price": 150,
+    "quantity": 25,
+    "images": [
+      "reebok_instapump_1.webp",
+      "reebok_instapump_2.webp",
+      "reebok_instapump_3.webp"
+    ]
+  },
+  {
+    "brand": "Reebok",
+    "category": "running",
+    "color": "Black",
+    "name": "Reebok Zig Dynamica 5",
+    "price": 157,
+    "quantity": 25,
+    "images": ["reebok_zig_1.webp", "reebok_zig_2.webp", "reebok_zig_3.webp"]
+  },
+
+  {
+    "brand": "Asics",
+    "category": "running",
+    "color": "White",
+    "name": "ASICS Gel Kayano 14",
+    "price": 200,
+    "quantity": 15,
+    "images": [
+      "ASICS_gel_kayano_1.webp",
+      "ASICS_gel_kayano_2.webp",
+      "ASICS_gel_kayano_3.webp"
+    ]
+  },
+  {
+    "brand": "Nike",
+    "category": "running",
     "color": "Gold",
     "name": "Nike Air Zoom Pegasus 38",
     "price": 120,
-    "product_id": "006",
     "quantity": 50,
-    "size": 10
-    },
-    {
-    "brand": "Adidas",
-    "category": "Running",
-    "color": "Cloud White",
-    "name": "Adidas Ultraboost 21",
-    "price": 180,
-    "product_id": "007",
-    "quantity": 20,
-    "size": 9.5
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Yellow",
-    "name": "Asics Nimbus 22",
-    "price": 150,
-    "product_id": "009",
-    "quantity": 15,
-    "size": 9
-    },
-    {
-    "brand": "Reebok",
-    "category": "Training",
-    "color": "Black",
-    "name": "Reebok Nano X1",
-    "price": 130,
-    "product_id": "010",
-    "quantity": 25,
-    "size": 10.5
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "White",
-    "name": "Nike Air Zoom Pegasus 38",
-    "price": 120,
-    "product_id": "001",
-    "quantity": 0,
-    "size": 10
-    },
-    {
-    "brand": "New Balance",
-    "category": "Running",
-    "color": "Black",
-    "name": "New Balance Fresh Foam 1080",
-    "price": 150,
-    "product_id": "003",
-    "quantity": 35,
-    "size": 9
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Black",
-    "name": "Asics Nimbus 23",
-    "price": 100,
-    "product_id": "004",
-    "quantity": 15,
-    "size": 10
-    },
-    {
-    "brand": "Reebok",
-    "category": "Training",
-    "color": "White",
-    "name": "Reebok Nano X1",
-    "price": 120,
-    "product_id": "010",
-    "quantity": 25,
-    "size": 9.5
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Grey",
-    "name": "Asics Nimbus 23",
-    "price": 135,
-    "product_id": "009",
-    "quantity": 15,
-    "size": 11
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "White",
-    "name": "Nike Air Zoom Pegasus 38",
-    "price": 120,
-    "product_id": "006",
-    "quantity": 50,
-    "size": 11
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Black",
-    "name": "Asics Nembus 23",
-    "price": 150,
-    "product_id": "004",
-    "quantity": 15,
-    "size": 9
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "White",
-    "name": "Nike Air Zoom Pegasus 38",
-    "price": 120,
-    "product_id": "001",
-    "quantity": 1,
-    "size": 9.5
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "Green",
-    "name": "Nike Air Zoom Pegasus 38",
-    "price": 150,
-    "product_id": "001",
-    "quantity": 1,
-    "size": 10
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "Black",
-    "name": "Nike Air Zoom Pegasus 38",
-    "price": 120,
-    "product_id": "001",
-    "quantity": 1,
-    "size": 9.5
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Black",
-    "name": "Asics Nembus 42",
-    "price": 150,
-    "product_id": "009",
-    "quantity": 15,
-    "size": 9
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "Black",
-    "name": "Nike Air Zoom Pegasus 38",
-    "price": 160,
-    "product_id": "006",
-    "quantity": 50,
-    "size": 9
-    },
-    {
-    "brand": "Asics",
-    "category": "Running",
-    "color": "Black",
-    "name": "Asics Nembus 6",
-    "price": 110,
-    "product_id": "004",
-    "quantity": 15,
-    "size": 9
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "White",
-    "name": "Nike Air Zoom Pegasus 38",
-    "price": 110,
-    "product_id": "006",
-    "quantity": 50,
-    "size": 9
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "Cloud Core Grey One",
-    "name": "roos 200",
-    "price": 180,
-    "product_id": "002",
-    "quantity": 20,
-    "size": 9
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "Gray",
-    "name": "Nike Air Zoom Pegasus 38",
-    "price": 120,
-    "product_id": "006",
-    "quantity": 50,
-    "size": 10
-    },
-    {
-    "brand": "Adidas",
-    "category": "Running",
-    "color": "Cloud Metallici Bright Green",
-    "name": "Adidas Ultraboost 21",
-    "price": 180,
-    "product_id": "011",
-    "quantity": 20,
-    "size": 9
-    },
-    {
-    "brand": "Adidas",
-    "category": "Running",
-    "color": "Red",
-    "name": "Adidas Ultraboost 21",
-    "price": 180,
-    "product_id": "007",
-    "quantity": 20,
-    "size": 9.5
-    },
-    {
-    "brand": "Adidas",
-    "category": "Running",
-    "color": "Purple",
-    "name": "Adidas Ultraboost 21",
-    "price": 150,
-    "product_id": "011",
-    "quantity": 20,
-    "size": 7
-    },
-    {
-    "brand": "Adidas",
-    "category": "Running",
-    "color": "Cloud Core Grey One",
-    "name": "Adidas Ultraboost 20",
-    "price": 90,
-    "product_id": "007",
-    "quantity": 20,
-    "size": 9.5
-    },
-    {
-    "brand": "Adidas",
-    "category": "Running",
-    "color": "Purple",
-    "name": "Adidas Ultraboost 21",
-    "price": 100,
-    "product_id": "007",
-    "quantity": 20,
-    "size": 11
-    },
-    {
-    "brand": "Adidas",
-    "category": "Running",
-    "color": "Purple",
-    "name": "Adidas Ultraboost 21",
-    "price": 120,
-    "product_id": "011",
-    "quantity": 20,
-    "size": 10.5
-    },
-    {
-    "brand": "Nike",
-    "category": "Running",
-    "color": "Yellow",
-    "name": "Nike Air Zoom Pegasus 38",
-    "price": 120,
-    "product_id": "001",
-    "quantity": 1,
-    "size": 10
-    },
-    
-   
-    {
-    "brand": "New Balance",
-    "category": "Running",
-    "color": "Sky White",
-    "name": "New Balance Fresh Foam 1080v11",
-    "price": 150,
-    "product_id": "012",
-    "quantity": 35,
-    "size": 11
-    }
+    "images": [
+      "Nike_Air_Zoom_Pegasus_1.webp",
+      "Nike_Air_Zoom_Pegasus_2.webp",
+      "Nike_Air_Zoom_Pegasus_3.webp"
     ]
+  },
+  {
+    "brand": "Asics",
+    "category": "training",
+    "color": "Grey",
+    "name": "ASICS x C.P. Company Gel-Quantum 360 8",
+    "price": 318,
+    "quantity": 15,
+    "images": [
+      "ASICS_gel_quantum_1.jpg",
+      "ASICS_gel_quantum_2.jpg",
+      "ASICS_gel_quantum_3.webp"
+    ]
+  },
+  {
+    "brand": "Asics",
+    "category": "running",
+    "color": "Green",
+    "name": "Asics x HAL STUDIOS GEL-1130",
+    "price": 201,
+    "quantity": 15,
+    "images": [
+      "Asics_STUDIOS_GEL_1.webp",
+      "Asics_STUDIOS_GEL_2.webp",
+      "Asics_STUDIOS_GEL_3.webp"
+    ]
+  },
+  {
+    "brand": "Nike",
+    "category": "lifestyle",
+    "color": "Green",
+    "name": "Nike ZoomX Alphafly NEXT% 3",
+    "price": 341,
+    "quantity": 50,
+    "images": ["Nike_ZoomX_1.webp", "Nike_ZoomX_2.webp", "Nike_ZoomX_3.webp"]
+  },
+  {
+    "brand": "Nike",
+    "category": "lifestyle",
+    "color": "White",
+    "name": "Nike Air Max 1 '86 OG",
+    "price": 244,
+    "quantity": 50,
+    "images": [
+      "Nike_Air_Max_1_1.webp",
+      "Nike_Air_Max_1_2.webp",
+      "Nike_Air_Max_1_3.webp"
+    ]
+  },
+  {
+    "brand": "New Balance",
+    "category": "lifestyle",
+    "color": "Green",
+    "name": "New Balance x JJJJound 2002R",
+    "price": 281,
+    "quantity": 35,
+    "images": [
+      "New_Balance_2002R_1.webp",
+      "New_Balance_2002R_2.webp",
+      "New_Balance_2002R_3.webp"
+    ]
+  },
+  {
+    "brand": "New Balance",
+    "category": "lifestyle",
+    "color": "Blue",
+    "name": "New Balance 9060 'Washed Blue'",
+    "price": 203,
+    "quantity": 35,
+    "images": [
+      "new_balance_9060_blue_1.webp",
+      "new_balance_9060_blue_2.webp",
+      "new_balance_9060_blue_3.webp"
+    ]
+  },
+  {
+    "brand": "Adidas",
+    "category": "lifestyle",
+    "color": "Blue",
+    "name": "Adidas Neo D-PAD Mid Shoes",
+    "price": 111,
+    "quantity": 20,
+    "images": ["Adidas_Neo_1.webp", "Adidas_Neo_2.webp", "Adidas_Neo_3.webp"]
+  },
+  {
+    "brand": "ANTA",
+    "category": "lifestyle",
+    "color": "Orange",
+    "name": "ANTA Shock Wave 5 ",
+    "price": 99,
+    "quantity": 20,
+    "images": [
+      "ANTA_Shock_Wave_5_1.webp",
+      "ANTA_Shock_Wave_5_2.webp",
+      "ANTA_Shock_Wave_5_3.webp"
+    ]
+  },
+  {
+    "brand": "Nike",
+    "category": "lifestyle",
+    "color": "Orange",
+    "name": "Nike Travis Scott x Air Force 1",
+    "price": 459,
+    "quantity": 20,
+    "images": [
+      "nike_air-force-1.jpg",
+      "nike_air-force-2.webp",
+      "nike_air-force-3.webp"
+    ]
+  },
+  {
+    "brand": "Nike",
+    "category": "running",
+    "color": "Olive",
+    "name": "Nike Air Zoom Vomero",
+    "price": 206,
+    "quantity": 20,
+    "images": [
+      "Nike_Air_Zoom_1.webp",
+      "Nike_Air_Zoom_2.webp",
+      "Nike_Air_Zoom_3.webp"
+    ]
+  },
+  {
+    "brand": "New Balance",
+    "category": "lifestyle",
+    "color": "Brown",
+    "name": "New Balance WRPD Runner",
+    "price": 160,
+    "quantity": 20,
+    "images": [
+      "New_Balance_WRPD_Runner_1.webp",
+      "New_Balance_WRPD_Runner_2.webp",
+      "New_Balance_WRPD_Runner_3.webp"
+    ]
+  },
+  {
+    "brand": "New Balance",
+    "category": "training",
+    "color": "White",
+    "name": "New Balance MX857V3",
+    "price": 139,
+    "quantity": 20,
+    "images": [
+      "new_balance_mx857wn3_1.webp",
+      "new_balance_mx857wn3_2.webp",
+      "new_balance_mx857wn3_3.webp"
+    ]
+  },
+  {
+    "brand": "New Balance",
+    "category": "training",
+    "color": "Grey",
+    "name": "New Balance 608v5",
+    "price": 71,
+    "quantity": 20,
+    "images": [
+      "New_Balance 608v5_1.webp",
+      "New_Balance 608v5_2.webp",
+      "New_Balance 608v5_3.webp"
+    ]
+  }
+]

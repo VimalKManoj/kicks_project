@@ -24,22 +24,22 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Shoe must have a price"],
   },
-  description: {
-    type: String,
-  },
   quantity: {
     type: Number,
     default: 20,
   },
-  size: {
-    type: Number,
+  color: {
+    type: String,
+    required: [true, "Shoe must have a color"],
   },
+  images: [String],
 });
 
 const Product = mongoose.model("products", productSchema);
 
 productSchema.pre("save", function (next) {
-  this.slug = slugify(this.name, { lower: true });
+  this.slug = slugify(this.name, { lower: true, replacement: "-" });
+
   next();
 });
 

@@ -1,10 +1,23 @@
 const Product = require("../Models/productModel");
+const APIfeatures = require("../utils/APIfeatures");
 
 exports.getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const features = new APIfeatures(Product.find(), req.query)
+      .filter()
+      .sort()
+      .fieldLimit()
+      .paginate();
 
-    res.status(200).json({ status: "Success", products });
+    const doc = await features.query;
+
+    res.status(200).json({
+      status: "Success",
+      results: doc.length,
+      data: {
+        data: doc,
+      },
+    });
   } catch (error) {
     console.log(error);
     res.json({
@@ -78,7 +91,7 @@ exports.deleteProduct = async (req, res) => {
       message: "deleted",
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.json({
       message: "failed",
       error,
