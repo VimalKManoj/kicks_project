@@ -16,7 +16,7 @@ export default function Slider({ slidesPerView }) {
       <Swiper
         slidesPerView={slidesPerView}
         centeredSlides={false}
-        spaceBetween={30}
+        spaceBetween={12}
         grabCursor={true}
         pagination={{
           clickable: true,
@@ -26,8 +26,7 @@ export default function Slider({ slidesPerView }) {
       >
         <SwiperSlide>
           {/* <div className="relative w-full h-full border border-n-4/90 rounded-3xl overflow-hidden"> */}
-            Slide 1
-          {/* </div> */}
+          Slide 1{/* </div> */}
         </SwiperSlide>
         <SwiperSlide>Slide 2</SwiperSlide>
         <SwiperSlide>Slide 3</SwiperSlide>

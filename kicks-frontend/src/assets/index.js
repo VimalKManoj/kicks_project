@@ -5,10 +5,9 @@ import new_balance_1 from "./new_balance_1.jpeg";
 import new_balance_2 from "./new_balance_2.jpeg";
 import new_balance_3 from "./new_balance_3.jpg";
 import nike_air_force_1 from "./nike_air-force-1.jpg";
-import nike_air_force_3 from "./nike_air-force-3.webp";
+import nike_air_force_3 from "./nike_air-force-3.jpg";
 import air_jordan from "./air-jordan-5.jpg";
 import air_jordan_1 from "./air_jordan_retro_5_1.webp";
-
 
 import check from "./check.svg";
 
@@ -58,7 +57,6 @@ export {
   air_jordan_1,
   nike_air_force_3,
   new_balance_3,
-
   play,
   gradient,
   smallSphere,

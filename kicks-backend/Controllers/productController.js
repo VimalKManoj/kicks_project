@@ -5,7 +5,7 @@ exports.getAllProducts = async (req, res) => {
   try {
     const features = new APIfeatures(Product.find(), req.query)
       .filter()
-      .sort()
+      // .sort()
       .fieldLimit()
       .paginate();
 
@@ -15,7 +15,7 @@ exports.getAllProducts = async (req, res) => {
       status: "Success",
       results: doc.length,
       data: {
-        data: doc,
+        doc,
       },
     });
   } catch (error) {

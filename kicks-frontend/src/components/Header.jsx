@@ -6,7 +6,7 @@ import { HamburgerMenu } from "../design/Header";
 import { enablePageScroll, disablePageScroll } from "scroll-lock";
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = ({ link, setLink }) => {
   const [openNavigation, setOpenNavigation] = useState(false);
 
   const navElementClassMobile = `block relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1 lg:hidden px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold `;
@@ -22,7 +22,9 @@ const Header = () => {
     }
   };
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    if (e.target.href === "http://localhost:5173/products")
+      setLink("http://localhost:3000/api/v1/products");
     if (!openNavigation) return;
 
     enablePageScroll();

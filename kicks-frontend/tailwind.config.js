@@ -40,11 +40,15 @@ export default {
           13: "#6C7275",
         },
       },
+      transitionProperty: {
+        height: "height",
+        width: "width",
+      },
       fontFamily: {
         sans: ["var(--font-sora)", ...fontFamily.sans],
         code: "var(--font-code)",
         grotesk: "var(--font-grotesk)",
-        archivo:"var(--font-archivo)"
+        archivo: "var(--font-archivo)",
       },
       letterSpacing: {
         tagline: ".15em",

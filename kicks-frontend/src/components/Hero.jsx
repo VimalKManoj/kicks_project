@@ -17,8 +17,9 @@ import { BackgroundCircles, BottomLine, Gradient } from "../design/Hero";
 import { ScrollParallax } from "react-just-parallax";
 import Button from "./Button";
 import Slider from "./swiper/Swiper";
-import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 const Hero = () => {
+  const navigate = useNavigate();
   const parallaxRef = useRef(null);
   return (
     <>
@@ -91,7 +92,12 @@ const Hero = () => {
             <br />
             <span className=" flex justify-end items-center text-right mx-auto w-full  ">
               new drops
-              <Button className="text-n-8 hover:text-color-1 ">
+              <Button
+                className="text-n-8 hover:text-color-1 "
+                onClick={() => {
+                  navigate("/products");
+                }}
+              >
                 <ArrowDownRightIcon className="h-[2rem] w-[2rem] lg:h-[4rem] lg:w-[4rem] xl:h-[6rem] xl:w-[6rem]" />
               </Button>
             </span>
@@ -103,7 +109,12 @@ const Hero = () => {
           <div className="relative">
             <div className="relative z-1 grid gap-1 lg:grid-cols-2">
               <div className="relative min-h-[39rem] border border-n-1/90 rounded-3xl overflow-hidden">
-                <div className="absolute inset-0 cursor-pointer">
+                <div
+                  className="absolute inset-0 cursor-pointer"
+                  onClick={() => {
+                    navigate("/products/65e9f88f54986f2fc374d939");
+                  }}
+                >
                   <img
                     src={new_balance_3}
                     className="z-4 h-full w-full object-cover hover:opacity-0 transition-opacity"
@@ -126,9 +137,14 @@ const Hero = () => {
                 </div>
               </div>
 
-              <div className="p-1  flex gap-1 flex-col justify-end rounded-3xl overflow-hidden lg:min-h-[46rem] max-h-[46rem] ">
+              <div className="p-1  flex gap-2 flex-col justify-end rounded-3xl overflow-hidden lg:min-h-[46rem] max-h-[46rem] ">
                 <div className="relative h-[20rem] bg-n-1 rounded-3xl overflow-hidden md:h-[25rem] border border-n-1/90 cursor-pointer">
-                  <div className="absolute inset-0 cursor-pointer">
+                  <div
+                    className="absolute inset-0 cursor-pointer"
+                    onClick={() => {
+                      navigate("/products/65e9f88f54986f2fc374d93c");
+                    }}
+                  >
                     <img
                       src={air_jordan_1}
                       className="z-1 absolute xl:-translate-y-[10rem] object-fit hover:opacity-0 transition-opacity "
@@ -153,7 +169,12 @@ const Hero = () => {
                 </div>
 
                 <div className="relative gap-1 h-[20rem] bg-n-8 rounded-3xl overflow-hidden md:h-[25rem] border border-n-1/90 cursor-pointer">
-                  <div className="absolute inset-0 cursor-pointer">
+                  <div
+                    className="absolute inset-0 cursor-pointer"
+                    onClick={() => {
+                      navigate("/products/65e9f88f54986f2fc374d94a");
+                    }}
+                  >
                     <img
                       src={nike_air_force_1}
                       className="z-1 absolute w-full object-cover xl:-translate-y-[15rem] hover:opacity-0 transition-opacity "
