@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Section from "./Section";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Button from "./Button";
 
 const Product = () => {
   const [product, setProduct] = useState({});
@@ -58,7 +59,7 @@ const Product = () => {
           <div className="w-[20rem]">
             <p className=" font-semibold text-2xl mb-1">{product.name}</p>
             <p className=" text-neutral-600 mb-2">Shoes</p>
-            <div className=" top-1/2 left-1/2 w-full  border border-n-2/40  mb-3" />
+            <div className=" top-1/2 left-1/2 w-full  border border-n-2/40  mb-10" />
             <p className=" font font-medium text-xl mb-1">
               USD ${product.price}
             </p>
@@ -67,6 +68,18 @@ const Product = () => {
               (Also includes all applicable duties)
             </p>
             <p className=" text-neutral-600 mb-2">Color : {product.color}</p>
+            <div className="flex justify-center flex-col pt-16">
+              <Button
+                className={` bg-black w-full h-[4rem] mb-10 hover:text-neutral-50 hover:bg-slate-500`}
+              >
+                Add to Wishlist
+              </Button>
+              <Button
+                className={` bg-black w-full h-[4rem] mb-5 hover:text-neutral-50 hover:bg-slate-500`}
+              >
+                Sign in to buy
+              </Button>
+            </div>
           </div>
         </div>
       </div>

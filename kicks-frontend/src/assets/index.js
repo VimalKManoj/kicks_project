@@ -8,7 +8,7 @@ import nike_air_force_1 from "./nike_air-force-1.jpg";
 import nike_air_force_3 from "./nike_air-force-3.jpg";
 import air_jordan from "./air-jordan-5.jpg";
 import air_jordan_1 from "./air_jordan_retro_5_1.webp";
-
+import nike_just_do_it from "./nike_just_do_it.png"
 import check from "./check.svg";
 
 import play from "./play.svg";
@@ -47,6 +47,7 @@ export {
   new_balance_1,
   new_balance_2,
   nike_air_force_1,
+  nike_just_do_it,
   kicks_logo_png,
   air_jordan,
   check,

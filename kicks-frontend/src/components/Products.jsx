@@ -4,6 +4,7 @@ import axios from "axios";
 import ShoeCard from "./ShoeCard";
 import TuneSharpIcon from "@mui/icons-material/TuneSharp";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
+import RestartAltTwoToneIcon from "@mui/icons-material/RestartAltTwoTone";
 import Loading from "./Loading";
 import Button from "./Button";
 
@@ -73,15 +74,18 @@ const Products = ({ link, setLink }) => {
                 <div className="flex justify-between items-center">
                   <h1 className="h4 mb-3 font-bold cursor-default">Filters</h1>
                   {reset && (
-                    <h1
-                      className="h5 text-xl mb-3 font-normal cursor-pointer"
-                      onClick={() => {
-                        setLink(`http://localhost:3000/api/v1/products`);
-                        setReset(false);
-                      }}
-                    >
-                      Reset
-                    </h1>
+                    <div className="flex">
+                      <RestartAltTwoToneIcon />
+                      <h1
+                        className="h5 text-xl mb-3 font-normal cursor-pointer"
+                        onClick={() => {
+                          setLink(`http://localhost:3000/api/v1/products`);
+                          setReset(false);
+                        }}
+                      >
+                        Reset
+                      </h1>
+                    </div>
                   )}
                 </div>
 
