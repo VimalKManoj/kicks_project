@@ -1,7 +1,7 @@
 const Product = require("../Models/productModel");
 const APIfeatures = require("../utils/APIfeatures");
 
-exports.getAllProducts = async (req, res) => {
+exports.getAllProducts = async (req, res, next) => {
   try {
     const features = new APIfeatures(Product.find(), req.query)
       .filter()
@@ -19,11 +19,7 @@ exports.getAllProducts = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
-    res.json({
-      message: "failed",
-      error,
-    });
+    next(error);
   }
 };
 
@@ -33,11 +29,7 @@ exports.getProduct = async (req, res) => {
 
     res.status(201).json({ status: "success", product });
   } catch (error) {
-    console.log(error);
-    res.json({
-      message: "failed",
-      error,
-    });
+    next(error);
   }
 };
 
@@ -52,11 +44,7 @@ exports.createProduct = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
-    res.json({
-      message: "failed",
-      error,
-    });
+    next(error);
   }
 };
 
@@ -75,10 +63,7 @@ exports.updateProduct = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.json({
-      message: "failed",
-      error,
-    });
+   
   }
 };
 
@@ -92,9 +77,5 @@ exports.deleteProduct = async (req, res) => {
     });
   } catch (error) {
     console.log(error);
-    res.json({
-      message: "failed",
-      error,
-    });
   }
 };
