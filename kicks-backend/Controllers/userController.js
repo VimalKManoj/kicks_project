@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 exports.signUp = async (req, res, next) => {
   try {
     const { name, email, password, confirmPassword } = req.body;
-
+    
     const newUser = await User.create({
       name,
       email,
@@ -26,7 +26,7 @@ exports.signIn = async (req, res, next) => {
 
     const user = await User.findOne({ email });
     if (!user) return next(errorHandler(404, "User not found"));
-    console.log(user)
+    console.log(user);
 
     const correctPass = await bcrypt.compare(password, user.password);
 

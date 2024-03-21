@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Section from "./Section";
-import { useParams } from "react-router-dom";
+import { useParams ,useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "./Button";
 
@@ -8,6 +8,7 @@ const Product = () => {
   const [product, setProduct] = useState({});
   const [mainImage, setMainImage] = useState("");
   const param = useParams();
+  const navigate = useNavigate()
 
   useEffect(() => {
     try {
@@ -76,6 +77,9 @@ const Product = () => {
               </Button>
               <Button
                 className={` bg-black w-full h-[4rem] mb-5 hover:text-neutral-50 hover:bg-slate-500`}
+                onClick={()=>{
+                  navigate('/login')
+                }}
               >
                 Sign in to buy
               </Button>

@@ -78,9 +78,11 @@ const Header = ({ link, setLink }) => {
             >
               New Account
             </Link>
-            <Button className=" hidden lg:flex border-2 border-black hover:border-color-1  bg-black hover:bg-white mt-0">
-              <Link to="/login">Sign IN</Link>
-            </Button>
+            <Link to="/login">
+              <Button className=" hidden lg:flex border-2 border-black hover:border-color-1  bg-black hover:bg-white mt-0">
+                Login
+              </Button>
+            </Link>
 
             <Button
               className=" mr-1  ml-auto lg:hidden  bg-black px-3"
