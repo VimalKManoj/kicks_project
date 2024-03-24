@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import Section from "./Section";
 import Button from "./Button";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const [formData, setFormData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -14,10 +17,14 @@ const Login = () => {
     try {
       const newUser = await axios.post(
         "http://localhost:3000/api/v1/users/signin",
-        { ...formData }
+        { ...formData },
+        {
+          withCredentials: true,
+        }
       );
     } catch (error) {
       console.log(error);
+      setError(error?.response.data.error.message);
     }
   };
 
@@ -42,6 +49,7 @@ const Login = () => {
             placeholder="Password"
             className="h-14 w-[26rem] mb-3 pl-3 border rounded-md"
           />
+          {error ? <h5 className=" mb-3 text-red-600">{error}</h5> : <></>}
 
           <Button className="bg-black h-14 mt-10 mb-5" onClick={handleSubmit}>
             Login

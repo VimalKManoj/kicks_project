@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Section from "./Section";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import CircularProgress from "@mui/material/CircularProgress";
+import Box from "@mui/material/Box";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -13,13 +17,22 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const newUser = await axios.post(
         "http://localhost:3000/api/v1/users/signup",
-        { ...formData }
+        { ...formData },
+        {
+          withCredentials: true,
+        }
       );
+      console.log(newUser);
+      navigate("/");
     } catch (error) {
-      setError(error.response.data.error.message);
+      console.log(error);
+      setError(error?.response.data.error.message);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -66,8 +79,19 @@ const Signup = () => {
           />
           {error ? <h5 className=" mb-3 text-red-600">{error}</h5> : <></>}
 
-          <Button className="bg-black h-14 mt-10 mb-5" onClick={handleSubmit}>
-            Sign Up
+          <Button
+            className="bg-black h-14 mt-10 mb-5 flex justify-center items-center"
+            onClick={handleSubmit}
+          >
+            {isLoading ? (
+              <Box sx={{ display: "flex" }}>
+                <CircularProgress
+                  sx={{ height: "5px", width: "5px", color: "white" }}
+                />
+              </Box>
+            ) : (
+              " Sign Up"
+            )}
           </Button>
         </form>
         <h4 className="w-[26rem] flex justify-items-start">
