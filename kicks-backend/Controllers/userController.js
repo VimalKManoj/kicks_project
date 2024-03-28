@@ -14,7 +14,7 @@ exports.signUp = async (req, res, next) => {
       confirmPassword,
     });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET);
 
     const cookieOptions = {
       expires: new Date(Date.now() + 90 * 24 * 60 * 60 * 1000),
@@ -32,7 +32,6 @@ exports.signUp = async (req, res, next) => {
       err = "User with this email already exists!";
     } else if (error.name === "ValidationError") {
       err = "Password should be 8 characters minimum";
-    
     }
     next(errorHandler(400, err));
   }
@@ -43,12 +42,13 @@ exports.signIn = async (req, res, next) => {
     const { email, password } = req.body;
 
     const user = await User.findOne({ email });
-    if (!user) return next(errorHandler(404, "User not found"));
+    if (!user) return next(errorHandler(404, "User not found. Signup Please!"));
     console.log(user);
 
     const correctPass = await bcrypt.compare(password, user.password);
 
-    if (!correctPass) return next(errorHandler(401, "Wrong Password"));
+    if (!correctPass)
+      return next(errorHandler(401, "Invalid Email / Password"));
 
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
 
@@ -65,4 +65,21 @@ exports.signIn = async (req, res, next) => {
     console.log(error);
     next(error);
   }
+};
+
+exports.verifyToken = (req, res, next) => {
+  const cookies = req.headers.cookie;
+  console.log(cookies);
+  const token = cookies.split("=")[1];
+  if (!token) {
+    res.status(404).json({ message: "No token found" });
+  }
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.status(400).json({ message: "Invalid TOken" });
+    }
+    console.log(user.id);
+    req.id = user.id;
+  });
+  next();
 };

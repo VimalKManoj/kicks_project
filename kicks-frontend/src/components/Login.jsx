@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Section from "./Section";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const [error, setError] = useState("");
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -22,6 +23,7 @@ const Login = () => {
           withCredentials: true,
         }
       );
+      navigate("/");
     } catch (error) {
       console.log(error);
       setError(error?.response.data.error.message);
