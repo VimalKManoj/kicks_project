@@ -60,7 +60,7 @@ exports.signIn = async (req, res, next) => {
     res
       .cookie("jwt", token, cookieOptions)
       .status(200)
-      .json({ status: "success", user });
+      .json({ status: "success",isLoggedIn :true , user });
   } catch (error) {
     console.log(error);
     next(error);
@@ -69,7 +69,6 @@ exports.signIn = async (req, res, next) => {
 
 exports.verifyToken = (req, res, next) => {
   const cookies = req.headers.cookie;
-  console.log(cookies);
   const token = cookies.split("=")[1];
   if (!token) {
     res.status(404).json({ message: "No token found" });
@@ -78,7 +77,7 @@ exports.verifyToken = (req, res, next) => {
     if (err) {
       return res.status(400).json({ message: "Invalid TOken" });
     }
-    console.log(user.id);
+    console.log(user);
     req.id = user.id;
   });
   next();

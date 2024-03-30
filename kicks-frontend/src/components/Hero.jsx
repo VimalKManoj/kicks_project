@@ -18,11 +18,21 @@ import { ScrollParallax } from "react-just-parallax";
 import Button from "./Button";
 import Slider from "./swiper/Swiper";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 const Hero = () => {
   const navigate = useNavigate();
   const parallaxRef = useRef(null);
   return (
-    <>
+    <motion.div
+      // className="box"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        duration: 1.8,
+
+        ease: "easeOut",
+      }}
+    >
       <Section
         className="pt-[12rem] -mt-[9rem] lg:-mt-[10rem]"
         crosses
@@ -218,7 +228,7 @@ const Hero = () => {
           <Slider slidesPerView={1} />
         </div>
       </Section>
-    </>
+    </motion.div>
   );
 };
 
