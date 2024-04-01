@@ -49,7 +49,6 @@ const Products = ({ link, setLink }) => {
       animate={{ opacity: 1 }}
       transition={{
         duration: 1,
-
         ease: "easeOut",
       }}
     >

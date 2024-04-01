@@ -3,11 +3,14 @@ import Section from "./Section";
 import Button from "./Button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { setLoggedIn , userDetails } from "../Redux/userSlice";
+import {useDispatch } from "react-redux";
 
 const Login = () => {
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [error, setError] = useState("");
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
@@ -23,6 +26,8 @@ const Login = () => {
           withCredentials: true,
         }
       );
+      dispatch(userDetails(newUser.data))
+      dispatch(setLoggedIn())
       navigate("/");
     } catch (error) {
       console.log(error);
