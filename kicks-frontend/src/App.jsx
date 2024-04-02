@@ -9,6 +9,7 @@ import Reviews from "./components/Reviews";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Product from "./components/Product";
+import Profile from "./components/Profile";
 
 
 const App = () => {
@@ -24,6 +25,7 @@ const App = () => {
             path="/products"
             element={<Products setLink={setLink} link={link} />}
           />
+          <Route path='/profile' element={<Profile/>}/>
           <Route path="/products/:id" element={<Product />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/signup" element={<Signup />} />

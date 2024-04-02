@@ -5,10 +5,14 @@ import MenuSvg from "../assets/svg/MenuSvg";
 import { HamburgerMenu } from "../design/Header";
 import { enablePageScroll, disablePageScroll } from "scroll-lock";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import Avatar from "@mui/material/Avatar";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ProfileDropdown from "./ProfileDropdown";
 
 const Header = ({ link, setLink }) => {
   const [openNavigation, setOpenNavigation] = useState(false);
-
+  const { currentUser, isLoggedIn } = useSelector((state) => state.user);
   const navElementClassMobile = `block relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1 lg:hidden px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold `;
   const navElementClassLarge = `block relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-12`;
 
@@ -58,12 +62,48 @@ const Header = ({ link, setLink }) => {
               >
                 Reviews
               </Link>
-              <a className={navElementClassMobile} onClick={handleClick}>
-                New Account
-              </a>
-              <a className={navElementClassMobile} onClick={handleClick}>
-                Sign In
-              </a>
+              {isLoggedIn ? (
+                <>
+                  <Link
+                    to="/profile"
+                    className={navElementClassMobile}
+                    onClick={handleClick}
+                  >
+                    profile
+                  </Link>
+                  <Link
+                    to="/cart"
+                    className={navElementClassMobile}
+                    onClick={handleClick}
+                  >
+                    Cart
+                  </Link>
+                  <Link
+                    to="/"
+                    className={navElementClassMobile}
+                    onClick={handleClick}
+                  >
+                    Logout
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/signup"
+                    className={navElementClassMobile}
+                    onClick={handleClick}
+                  >
+                    New Account
+                  </Link>
+                  <Link
+                    to="/login"
+                    className={navElementClassMobile}
+                    onClick={handleClick}
+                  >
+                    Sign In
+                  </Link>
+                </>
+              )}
             </div>
             <HamburgerMenu />
           </nav>
@@ -72,17 +112,42 @@ const Header = ({ link, setLink }) => {
           </Link>
 
           <div className="relative z-2 flex flex-row items-center  lg:flex-row ">
-            <Link
-              to="/signup"
-              className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-12"
-            >
-              New Account
-            </Link>
-            <Link to="/login">
-              <Button className=" hidden lg:flex border-2 border-black hover:border-color-1  bg-black hover:bg-white mt-0">
-                Login
-              </Button>
-            </Link>
+            {isLoggedIn ? (
+              <>
+                <ProfileDropdown>
+                  <Link
+                    to="/profile"
+                    className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-6"
+                    onClick={handleClick}
+                  >
+                    
+                  </Link>
+                </ProfileDropdown>
+                <Link
+                  to="/cart"
+                  className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-6"
+                  onClick={handleClick}
+                >
+                  <div className=" w-10 h-10 flex justify-center items-center rounded shadow-md mr-8">
+                    <ShoppingCartIcon />
+                  </div>
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link
+                  to="/signup"
+                  className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-12"
+                >
+                  New Account
+                </Link>
+                <Link to="/login">
+                  <Button className=" hidden lg:flex border-2 border-black hover:border-color-1  bg-black hover:bg-white mt-0">
+                    Login
+                  </Button>
+                </Link>
+              </>
+            )}
 
             <Button
               className=" mr-1  ml-auto lg:hidden  bg-black px-3"

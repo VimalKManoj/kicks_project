@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import CircularProgress from "@mui/material/CircularProgress";
 import Box from "@mui/material/Box";
-import { setLoggedIn , userDetails } from "../Redux/userSlice";
-import {useDispatch } from "react-redux";
+import { setLoggedIn, userDetails } from "../Redux/userSlice";
+import { useDispatch } from "react-redux";
 
 
 const Signup = () => {
@@ -14,7 +14,8 @@ const Signup = () => {
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const dispatch = useDispatch()
+ 
+  const dispatch = useDispatch();
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
@@ -30,9 +31,10 @@ const Signup = () => {
           withCredentials: true,
         }
       );
-      dispatch(userDetails(newUser.data))
-      dispatch(setLoggedIn())
+      dispatch(userDetails(newUser.data));
+      dispatch(setLoggedIn());
       navigate("/");
+      
     } catch (error) {
       console.log(error);
       setError(error?.response.data.error.message);
@@ -43,6 +45,7 @@ const Signup = () => {
 
   return (
     <Section className=" h-screen">
+      
       <div className="container justify-around items-center flex flex-col ">
         <div className=" flex  justify-center items-center  h2">
           Create Account
