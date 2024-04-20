@@ -3,12 +3,14 @@ import Section from "./Section";
 import { useParams ,useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "./Button";
+import { useSelector } from "react-redux";
 
 const Product = () => {
   const [product, setProduct] = useState({});
   const [mainImage, setMainImage] = useState("");
   const param = useParams();
   const navigate = useNavigate()
+  const { currentUser, isLoggedIn } = useSelector((state)=>state.user)
 
   useEffect(() => {
     try {
@@ -75,14 +77,22 @@ const Product = () => {
               >
                 Add to Wishlist
               </Button>
-              <Button
+              {isLoggedIn?(<Button
+                className={` bg-black w-full h-[4rem] mb-5 hover:text-neutral-50 hover:bg-slate-500`}
+                onClick={()=>{
+                  navigate('/')
+                }}
+              >
+                Checkout
+              </Button>):(<Button
                 className={` bg-black w-full h-[4rem] mb-5 hover:text-neutral-50 hover:bg-slate-500`}
                 onClick={()=>{
                   navigate('/login')
                 }}
               >
                 Sign in to buy
-              </Button>
+              </Button>)}
+              
             </div>
           </div>
         </div>

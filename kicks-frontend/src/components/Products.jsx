@@ -3,22 +3,28 @@ import Section from "./Section";
 import axios from "axios";
 import ShoeCard from "./ShoeCard";
 import TuneSharpIcon from "@mui/icons-material/TuneSharp";
-import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import RestartAltTwoToneIcon from "@mui/icons-material/RestartAltTwoTone";
 import Loading from "./Loading";
 import Button from "./Button";
 import { motion } from "framer-motion";
+import SortByDrop from "./SortByDrop";
 
 const Products = ({ link, setLink }) => {
   const [products, setProducts] = useState([]);
   const [reset, setReset] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [filterToggle, setFilterToggle] = useState(true);
+  const [filterToggle, setFilterToggle] = useState(false);
 
   const filtering = (e) => {
     const value = e.target.innerText.toLowerCase();
 
     setLink(`http://localhost:3000/api/v1/products?category=${value}`);
+    setReset(true);
+  };
+
+  const brandFilter = (e) => {
+    const value = e.target.innerText;
+    setLink(`http://localhost:3000/api/v1/products?brand=${value}`);
     setReset(true);
   };
 
@@ -67,8 +73,7 @@ const Products = ({ link, setLink }) => {
                   <TuneSharpIcon sx={{ fontSize: 20 }} />
                 </h1>
                 <h1 className=" cursor-pointer select-none ">
-                  Sort By
-                  <KeyboardArrowDownSharpIcon />
+                  <SortByDrop setLink={setLink} />
                 </h1>
               </div>
 
@@ -132,34 +137,39 @@ const Products = ({ link, setLink }) => {
                     <h1 className=" font-semibold mb-3 cursor-default">
                       Brands
                     </h1>
-                    <a className="mb-1 cursor-pointer">Adidas</a>
-                    <a className="mb-1 cursor-pointer">New Balance</a>
-                    <a className="mb-1 cursor-pointer">Reebok</a>
-                    <a className="mb-1 cursor-pointer">Nike</a>
-                    <a className="mb-1 cursor-pointer">ASICS</a>
-                    <a className="mb-1 cursor-pointer">ANTA</a>
-                  </div>
-                  <div className=" top-1/2 left-1/2 w-full  border border-n-2/40  mb-3" />
-                  <div className={` mb-3 cursor-default flex-col`}>
-                    <h1 className=" font-semibold mb-3 cursor-default">
-                      Shop by price
-                    </h1>
-                    <a className={` mb-1 cursor-pointer`}>Under 200</a>
-                    <a
-                      className={`${
-                        filterToggle
-                          ? "hidden overflow-hidden "
-                          : "flex overflow-hidden"
-                      } mb-1 cursor-pointer`}
-                    >
-                      Under 100
+                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                      Adidas
+                    </a>
+                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                      New Balance
+                    </a>
+                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                      Reebok
+                    </a>
+                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                      Nike
+                    </a>
+                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                      Asics
+                    </a>
+                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                      ANTA
                     </a>
                   </div>
+                  <div className=" top-1/2 left-1/2 w-full  border border-n-2/40  mb-3" />
                 </div>
 
                 <ShoeCard products={products} filterToggle={filterToggle} />
               </div>
-              <div>Next</div>
+              <div className="flex justify-center mt-12">
+              <Button
+              onClick={()=>{reset?(setLink(`${link}&limit=20`)):(setLink(`${link}?limit=20`)) }}
+                className={` bg-black w-[16rem] h-[2.4rem] mr-3 mb-3 active:text-color-1`}
+              >
+                Load More
+              </Button>
+              </div>
+              
             </>
           )}
         </div>

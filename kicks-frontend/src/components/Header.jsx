@@ -9,8 +9,11 @@ import { useSelector } from "react-redux";
 import Avatar from "@mui/material/Avatar";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProfileDropdown from "./ProfileDropdown";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ link, setLink }) => {
+  const navigate = useNavigate()
   const [openNavigation, setOpenNavigation] = useState(false);
   const { currentUser, isLoggedIn } = useSelector((state) => state.user);
   const navElementClassMobile = `block relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1 lg:hidden px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold `;
@@ -114,10 +117,10 @@ const Header = ({ link, setLink }) => {
           <div className="relative z-2 flex flex-row items-center  lg:flex-row ">
             {isLoggedIn ? (
               <>
-                <ProfileDropdown>
+                <ProfileDropdown > 
                   <Link
                     to="/profile"
-                    className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-6"
+                    className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.4 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-6"
                     onClick={handleClick}
                   >
                     
@@ -125,11 +128,20 @@ const Header = ({ link, setLink }) => {
                 </ProfileDropdown>
                 <Link
                   to="/cart"
+                  className="hidden lg:flex relative font-code text-2xl uppercase ml-4 text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-6"
+                  onClick={handleClick}
+                >
+                  <div className=" w-10 h-10 flex justify-center items-center rounded shadow-md ">
+                    <ShoppingCartIcon />
+                  </div>
+                </Link>
+                <Link
+                  to="/wishlist"
                   className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-6"
                   onClick={handleClick}
                 >
                   <div className=" w-10 h-10 flex justify-center items-center rounded shadow-md mr-8">
-                    <ShoppingCartIcon />
+                    <FavoriteIcon/>
                   </div>
                 </Link>
               </>

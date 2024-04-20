@@ -60,7 +60,7 @@ exports.signIn = async (req, res, next) => {
     res
       .cookie("jwt", token, cookieOptions)
       .status(200)
-      .json({ status: "success",isLoggedIn :true , user });
+      .json({ status: "success", isLoggedIn: true, user });
   } catch (error) {
     console.log(error);
     next(error);
@@ -81,4 +81,16 @@ exports.verifyToken = (req, res, next) => {
     req.id = user.id;
   });
   next();
+};
+
+exports.logout = (req, res, next) => {
+  const cookieOptions = {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  };
+  // WHEN LOGGING OUT SEND A NEW COOKIE WITH NO JWT TOKEN SO THAT IT FAILS THE VERIFY
+  res
+    .cookie("jwt", "logged out", cookieOptions)
+    .status(200)
+    .json({ status: "success" });
 };

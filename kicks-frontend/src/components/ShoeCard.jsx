@@ -17,7 +17,7 @@ const ShoeCard = ({ products, filterToggle }) => {
             key={item._id}
           >
             <div
-              className={`relative h-[22rem] w-[22rem]  bg-white mb-3 overflow-hidden`}
+              className={`relative h-[22rem] w-[22rem]  bg-white mb-3 overflow-hidden rounded-md`}
             >
               <div className=" absolute top-0 left-0 overflow-hidden ">
                 <img

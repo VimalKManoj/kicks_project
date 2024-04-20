@@ -32,7 +32,7 @@ const Signup = () => {
         }
       );
       dispatch(userDetails(newUser.data));
-      dispatch(setLoggedIn());
+      dispatch(setLoggedIn(true));
       navigate("/");
       
     } catch (error) {
