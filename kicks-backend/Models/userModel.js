@@ -27,6 +27,19 @@ const userSchema = new mongoose.Schema(
         message: "Passwords are not same!",
       },
     },
+    photo: { type: String, default: "default.jpg" },
+    address: {
+      type: String,
+    },
+    city: {
+      type: String,
+    },
+    country: {
+      type: String,
+    },
+    mobile: {
+      type: Number,
+    },
   },
   { timestamps: true }
 );

@@ -2,6 +2,8 @@ const { errorHandler } = require("../utils/errorHandler");
 const User = require("./../Models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const multer = require('multer')
+const sharp = require('sharp')
 
 exports.signUp = async (req, res, next) => {
   try {
@@ -83,6 +85,39 @@ exports.verifyToken = (req, res, next) => {
   next();
 };
 
+exports.protect =async (req , res , next) =>{
+  let token;
+  if (
+    req.headers.authorization &&
+    req.headers.authorization.startsWith('Bearer')
+  ) {
+    token = req.headers.authorization.split(' ')[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
+  }
+  if (!token) {
+    // IF NO TOKEN IS PRESENT
+    return next(errorHandler(401,'You are not logged in , Please log in to get access'),
+    );
+  }
+
+  let decoded;
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (error) {
+    next(error);
+  }
+  const freshUser = await User.findById(decoded.id);
+  if (!freshUser) {
+    return next(
+      new AppError('User belonging to the token no longer exist', 401),
+    );
+  }
+
+  req.user = freshUser;
+  next();
+}
+
 exports.logout = (req, res, next) => {
   const cookieOptions = {
     expires: new Date(Date.now() + 10 * 1000),
@@ -94,3 +129,10 @@ exports.logout = (req, res, next) => {
     .status(200)
     .json({ status: "success" });
 };
+
+
+// -----------------------------------------------------------------------------------------
+
+const multerStorage = multer.memoryStorage()
+
+
