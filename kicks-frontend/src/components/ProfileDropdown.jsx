@@ -3,12 +3,14 @@ import { Button, Dropdown, Space } from "antd";
 import { Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn , userDetails } from "../Redux/userSlice";
 
 const ProfileDropdown = () => {
+  const {currentUser }  = useSelector((state)=>state.user)
+  console.log(currentUser.user)
   const dispatch = useDispatch();
-
+  console.log(currentUser)
   const logoutUser = async () => {
     try {
       const res = await axios.get("http://localhost:3000/api/v1/users/logout", {
@@ -50,7 +52,7 @@ const ProfileDropdown = () => {
         >
           <Avatar
             variant="rounded"
-            src=""
+            src={`/users/${currentUser.user.photo}`}
             sx={{ boxShadow: "2" }}
             className=" cursor-pointer"
           />

@@ -37,9 +37,9 @@ const Product = () => {
               {product.images &&
                 product.images.length > 0 &&
                 product.images.map((image, index) => (
-                  <div className="w-[6rem] h-[6rem] border-2 mb-3 bg-white flex justify-center">
+                  <div className="w-[6rem] h-[6rem] border-2 mb-3 bg-white flex justify-center rounded-lg">
                     <img
-                      className="w-full h-full object-contain cursor-pointer hover:backdrop-saturate-125"
+                      className="w-full h-full object-contain cursor-pointer hover:backdrop-saturate-125 rounded-lg"
                       onMouseOver={() => {
                         setMainImage(image);
                       }}
@@ -50,10 +50,10 @@ const Product = () => {
                   </div>
                 ))}
             </div>
-            <div className="w-[30rem] h-[30rem] border-2 mb-3 bg-white flex justify-center">
+            <div className="w-[30rem] h-[30rem] border-2 mb-3 bg-white flex justify-center rounded-lg">
               {product.images && product.images.length > 0 && (
                 <img
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain rounded-lg" 
                   src={`/products/${mainImage}`}
                 />
               )}

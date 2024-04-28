@@ -6,7 +6,6 @@ import { HamburgerMenu } from "../design/Header";
 import { enablePageScroll, disablePageScroll } from "scroll-lock";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Avatar from "@mui/material/Avatar";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProfileDropdown from "./ProfileDropdown";
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -16,6 +15,7 @@ const Header = ({ link, setLink }) => {
   const navigate = useNavigate()
   const [openNavigation, setOpenNavigation] = useState(false);
   const { currentUser, isLoggedIn } = useSelector((state) => state.user);
+
   const navElementClassMobile = `block relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1 lg:hidden px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold `;
   const navElementClassLarge = `block relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-12`;
 
