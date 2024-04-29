@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn , userDetails } from "../Redux/userSlice";
+import PersonIcon from '@mui/icons-material/Person';
 
 const ProfileDropdown = () => {
   const {currentUser }  = useSelector((state)=>state.user)
@@ -45,17 +46,21 @@ const ProfileDropdown = () => {
     <Space direction="vertical" className="hidden lg:flex">
       <Space wrap>
         <Dropdown
+        
           menu={{
             items,
           }}
           placement="bottom"
         >
-          <Avatar
-            variant="rounded"
-            src={`/users/${currentUser.user.photo}`}
-            sx={{ boxShadow: "2" }}
-            className=" cursor-pointer"
-          />
+         <Link
+                  className="hidden lg:flex relative font-code text-2xl uppercase  text-n-8 transition-colors hover:text-color-1  px-2 py-0 md:py- lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 "
+                 
+                >
+                  <div className=" w-10 h-10 flex justify-center items-center rounded shadow-md ">
+                    <PersonIcon />
+                  </div>
+                </Link>
+         
         </Dropdown>
       </Space>
     </Space>

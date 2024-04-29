@@ -4,6 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const sharp = require("sharp");
+const path = require("path");
+
 
 exports.signUp = async (req, res, next) => {
   try {
@@ -45,7 +47,7 @@ exports.signIn = async (req, res, next) => {
 
     const user = await User.findOne({ email });
     if (!user) return next(errorHandler(404, "User not found. Signup Please!"));
-    // console.log(user);
+    
 
     const correctPass = await bcrypt.compare(password, user.password);
 
@@ -75,7 +77,7 @@ exports.verifyToken = (req, res, next) => {
   const token = cookies
     ? cookies.split(";").find((cookie) => cookie.trim().startsWith("jwt="))
     : null;
-  console.log(token);
+  // console.log(token);
 
   // If token is not present, return an error
   if (!token) {
@@ -91,9 +93,12 @@ exports.verifyToken = (req, res, next) => {
     }
     // If the token is valid, store the user's id in the request object
     req.id = user.id;
+    
     // Call the next middleware
-    next();
+   
   });
+  
+  next();
 };
 
 exports.getUserId = (req, res, next) => {
@@ -144,14 +149,16 @@ const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 exports.uploadUserPhoto = upload.single("photo");
 
 exports.resizeUserPhoto = async (req, res, next) => {
+  console.log(req)
   try {
     if (!req.file) return next();
 
-    req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+    req.file.filename = `user-${req.id}-${Date.now()}.jpeg`;
     const filePath = path.resolve(
       __dirname,
       "..",
-      "frontend",
+      "..", 
+      "kicks-frontend",
       "public",
       "users",
       req.file.filename
@@ -179,6 +186,7 @@ const filterObj = (obj, ...allowedFields) => {
 
 exports.updateMyData = async (req, res, next) => {
   try {
+    console.log(req.body)
     // const { name, address, city, country, mobile } = req.body;
     const filterBody = filterObj(
       req.body,
@@ -188,15 +196,17 @@ exports.updateMyData = async (req, res, next) => {
       "country",
       "mobile"
     );
+
+    
     if (req.file) filterBody.photo = req.file.filename;
-    const updateUser = await User.findByIdAndUpdate(req.user.id, filterBody, {
+    const updateUser = await User.findByIdAndUpdate(req.id, filterBody, {
       new: true,
       runValidators: true,
     });
-
-    res.send(200).json({ status: "success", user: updateUser });
+    console.log(updateUser , req.file)
+    res.status(200).json({ status: "success", user: updateUser });
   } catch (error) {
-    next(error);
+    console.log(error)
   }
 };
 
