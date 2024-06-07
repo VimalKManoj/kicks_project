@@ -17,6 +17,7 @@ const {
   toCart,
   checkout,
   createBooking,
+  getOrders,
 } = require("../Controllers/userController");
 
 const router = express.Router();
@@ -41,4 +42,5 @@ router.route('/removefromcart').post(removefromCart)
 router.route('/getcart').get(getCart)
 router.route('/checkout').post(checkout)
 router.route('/createbooking').post(createBooking)
+router.route('/getorders').get(getOrders)
 module.exports = router;

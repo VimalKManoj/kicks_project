@@ -44,7 +44,7 @@ const Hero = ({link  , setLink}) => {
           className=" container relative  md:mb-[4rem] mb-[2rem] xl:mb-0"
           ref={parallaxRef}
         >
-          <div className=" relative z-1 max-w-[62rem] mx-auto text-center mb-[4rem] lg:mb-[6rem] font-archivo">
+          <div className=" relative z-1 max-w-[62rem] mx-auto text-center mb-[4rem] lg:mb-[6rem] font-archivo select-none">
             <h1 className="text-7xl lg:text-[8rem] mb-6">
               DO IT{" "}
               <span className=" inline-block relative text-color-1">RIGHT</span>

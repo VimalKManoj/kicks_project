@@ -1,5 +1,6 @@
 const { errorHandler } = require("../utils/errorHandler");
 const User = require("./../Models/userModel");
+const Booking = require("./../Models/bookingModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
@@ -315,13 +316,13 @@ exports.getCart = async (req, res, next) => {
 exports.checkout = async (req, res, next) => {
   try {
     const products = req.body.products;
-    console.log(products)
 
-    
     const user = await User.findById(req.id);
 
     const currentTime = Math.floor(Date.now() / 1000);
 
+    const productIDs = products.map((product) => product._id);
+    console.log(products, productIDs);
     const lineItems = products.map((product) => ({
       price_data: {
         currency: "usd",
@@ -329,7 +330,7 @@ exports.checkout = async (req, res, next) => {
           name: product.name,
           images: [product.images[0]],
           metadata: {
-            productId: product.id,
+            productDetails: product._id,
           },
         },
         unit_amount: product.price * 100,
@@ -338,14 +339,15 @@ exports.checkout = async (req, res, next) => {
     }));
 
     const session = await stripe.checkout.sessions.create({
-      customer_email:user.email,
+      customer_email: user.email,
       invoice_creation: {
         enabled: true,
         invoice_data: {
-          custom_fields: null,
+          custom_fields: [],
           description: null,
           metadata: {
-            createdAt: currentTime, // Add the current time here
+            createdAt: currentTime,
+            productIDs: productIDs.join(", "),
           },
         },
       },
@@ -366,14 +368,67 @@ exports.checkout = async (req, res, next) => {
 exports.createBooking = async (req, res, next) => {
   try {
     const sessionID = req.body.sessionID;
+
+    const result = Promise.all([
+      stripe.checkout.sessions.retrieve(sessionID, {
+        expand: ["payment_intent.payment_method"],
+      }),
+      stripe.checkout.sessions.listLineItems(sessionID),
+    ]);
+
+    const sessionDetails = await result;
+
+    const extractedInfo = {
+      productIDs:
+        sessionDetails[0].invoice_creation.invoice_data.metadata.productIDs.split(
+          ", "
+        ),
+      created: sessionDetails[0].payment_intent.created,
+      email: sessionDetails[0].customer_email,
+      price: sessionDetails[0].amount_total,
+    };
+
+    const { productIDs, created, email, price } = extractedInfo;
+
+    if (!productIDs && !created && !email && !price) return next();
+
+    const user = await User.find({ email });
+
+    const existingBooking = await Booking.findOne({ createdAt: created });
+
+    if (existingBooking) {
+      return next();
+    }
+
+    const booking = await Booking.create({
+      products: productIDs,
+      user: user[0]._id,
+      price,
+      createdAt: created,
+    });
+
+    res.status(200).json({ status: "success", booking });
+  } catch (error) {
+    next(error);
+  }
+
+};
+
+
+exports.getOrders = async (req, res, next)=>{
+
+  try {
+    const booking = await Booking.find({user : req.id});
+
+    if (!booking) {
+      return res.status(404).json({ message: "No booking found!" });
+    }
+
+  
+
+    res.status(200).json({ status: "success" ,booking});
+  } catch (error) {
     
-
-    const session = await stripe.checkout.sessions.retrieve(sessionID);
-
-    console.log(session.invoice_creation.invoice_data.metadata);
-
-    const expirationTime = new Date(1717753327 * 1000);
-    console.log(expirationTime)
-    
-  } catch (error) {}
+    next(error);
+  }
 };
