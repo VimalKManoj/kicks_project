@@ -5,7 +5,10 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const sharp = require("sharp");
 const path = require("path");
-
+const Product = require("../Models/productModel");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./config.env" });
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.signUp = async (req, res, next) => {
   try {
@@ -47,7 +50,6 @@ exports.signIn = async (req, res, next) => {
 
     const user = await User.findOne({ email });
     if (!user) return next(errorHandler(404, "User not found. Signup Please!"));
-    
 
     const correctPass = await bcrypt.compare(password, user.password);
 
@@ -66,7 +68,7 @@ exports.signIn = async (req, res, next) => {
       .status(200)
       .json({ status: "success", isLoggedIn: true, user });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     next(error);
   }
 };
@@ -93,11 +95,10 @@ exports.verifyToken = (req, res, next) => {
     }
     // If the token is valid, store the user's id in the request object
     req.id = user.id;
-    
+
     // Call the next middleware
-   
   });
-  
+
   next();
 };
 
@@ -149,7 +150,6 @@ const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
 exports.uploadUserPhoto = upload.single("photo");
 
 exports.resizeUserPhoto = async (req, res, next) => {
-  console.log(req)
   try {
     if (!req.file) return next();
 
@@ -157,7 +157,7 @@ exports.resizeUserPhoto = async (req, res, next) => {
     const filePath = path.resolve(
       __dirname,
       "..",
-      "..", 
+      "..",
       "kicks-frontend",
       "public",
       "users",
@@ -186,7 +186,6 @@ const filterObj = (obj, ...allowedFields) => {
 
 exports.updateMyData = async (req, res, next) => {
   try {
-    console.log(req.body)
     // const { name, address, city, country, mobile } = req.body;
     const filterBody = filterObj(
       req.body,
@@ -197,49 +196,184 @@ exports.updateMyData = async (req, res, next) => {
       "mobile"
     );
 
-    
     if (req.file) filterBody.photo = req.file.filename;
     const updateUser = await User.findByIdAndUpdate(req.id, filterBody, {
       new: true,
       runValidators: true,
     });
-    console.log(updateUser , req.file)
+
     res.status(200).json({ status: "success", user: updateUser });
   } catch (error) {
-    console.log(error)
+    next(error);
   }
 };
 
-// exports.protect = async (req, res, next) => {
-//   let token;
-//   if (
-//     req.headers.authorization &&
-//     req.headers.authorization.startsWith("Bearer")
-//   ) {
-//     token = req.headers.authorization.split(" ")[1];
-//   } else if (req.cookies.jwt) {
-//     token = req.cookies.jwt;
-//   }
-//   if (!token) {
-//     // IF NO TOKEN IS PRESENT
-//     return next(
-//       errorHandler(401, "You are not logged in , Please log in to get access")
-//     );
-//   }
+exports.addToWishlist = async (req, res, next) => {
+  try {
+    const userId = req.id;
+    const productId = req.body.product._id;
 
-//   let decoded;
-//   try {
-//     decoded = jwt.verify(token, process.env.JWT_SECRET);
-//   } catch (error) {
-//     next(error);
-//   }
-//   const freshUser = await User.findById(decoded.id);
-//   if (!freshUser) {
-//     return next(
-//       new AppError("User belonging to the token no longer exist", 401)
-//     );
-//   }
+    const updatedUser = await User.findByIdAndUpdate(userId, {
+      $addToSet: { wishlist: productId },
+    });
 
-//   req.user = freshUser;
-//   next();
-// };
+    res.status(200).json({
+      message: "Success",
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+exports.removefromWishlist = async (req, res, next) => {
+  try {
+    const userId = req.id;
+    const productId = req.body.products._id;
+
+    const removedList = await User.findByIdAndUpdate(userId, {
+      $pull: { wishlist: productId },
+    });
+
+    res.status(200).json({ status: "success", removedList });
+  } catch (error) {
+    // console.log(error);
+    next(error);
+  }
+};
+
+exports.getWishlist = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const wishlist = await Product.find({ _id: { $in: user.wishlist } });
+
+    res.status(200).json({ status: "success", wishlist });
+  } catch (error) {
+    // console.log(error);
+    next(error);
+  }
+};
+
+exports.toCart = async (req, res, next) => {
+  try {
+    const userId = req.id;
+    const productId = req.body.products._id;
+
+    const updatedUser = await User.findByIdAndUpdate(userId, {
+      $addToSet: { cart: productId },
+    });
+
+    res.status(200).json({
+      message: "Success",
+      data: updatedUser,
+    });
+  } catch (error) {
+    // console.log(error);
+    next(error);
+  }
+};
+
+exports.removefromCart = async (req, res, next) => {
+  try {
+    const userId = req.id;
+    const productId = req.body.products._id;
+
+    const removedList = await User.findByIdAndUpdate(userId, {
+      $pull: { cart: productId },
+    });
+
+    res.status(200).json({ status: "success", removedList });
+  } catch (error) {
+    // console.log(error);
+    next(error);
+  }
+};
+
+exports.getCart = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.id);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const cart = await Product.find({ _id: { $in: user.cart } });
+
+    res.status(200).json({ status: "success", cart });
+  } catch (error) {
+    // console.log(error);
+    next(error);
+  }
+};
+
+exports.checkout = async (req, res, next) => {
+  try {
+    const products = req.body.products;
+    console.log(products)
+
+    
+    const user = await User.findById(req.id);
+
+    const currentTime = Math.floor(Date.now() / 1000);
+
+    const lineItems = products.map((product) => ({
+      price_data: {
+        currency: "usd",
+        product_data: {
+          name: product.name,
+          images: [product.images[0]],
+          metadata: {
+            productId: product.id,
+          },
+        },
+        unit_amount: product.price * 100,
+      },
+      quantity: 1,
+    }));
+
+    const session = await stripe.checkout.sessions.create({
+      customer_email:user.email,
+      invoice_creation: {
+        enabled: true,
+        invoice_data: {
+          custom_fields: null,
+          description: null,
+          metadata: {
+            createdAt: currentTime, // Add the current time here
+          },
+        },
+      },
+      line_items: lineItems,
+      mode: "payment",
+      success_url:
+        "http://localhost:5173/payment_success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "http://localhost:5173/payment_failure",
+    });
+
+    res.status(200).json({ status: "success", session });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+exports.createBooking = async (req, res, next) => {
+  try {
+    const sessionID = req.body.sessionID;
+    
+
+    const session = await stripe.checkout.sessions.retrieve(sessionID);
+
+    console.log(session.invoice_creation.invoice_data.metadata);
+
+    const expirationTime = new Date(1717753327 * 1000);
+    console.log(expirationTime)
+    
+  } catch (error) {}
+};

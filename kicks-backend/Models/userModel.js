@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 
+
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -40,6 +41,18 @@ const userSchema = new mongoose.Schema(
     mobile: {
       type: Number,
     },
+    wishlist: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Product",
+      },
+    ],
+    cart: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Product",
+      },
+    ],
   },
   { timestamps: true }
 );
@@ -53,6 +66,19 @@ userSchema.pre("save", async function (next) {
 
   next();
 });
+
+
+
+userSchema.pre("save" , async function(next){
+  this.populate({
+    path:'cart',
+    select:'-__v'
+  })
+  next()
+})
+
+
+
 
 const User = mongoose.model("user", userSchema);
 

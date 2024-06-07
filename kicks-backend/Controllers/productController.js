@@ -23,7 +23,7 @@ exports.getAllProducts = async (req, res, next) => {
   }
 };
 
-exports.getProduct = async (req, res) => {
+exports.getProduct = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id);
 
@@ -33,7 +33,7 @@ exports.getProduct = async (req, res) => {
   }
 };
 
-exports.createProduct = async (req, res) => {
+exports.createProduct = async (req, res, next) => {
   try {
     const product = await Product.create(req.body);
 
@@ -44,11 +44,12 @@ exports.createProduct = async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error);
     next(error);
   }
 };
 
-exports.updateProduct = async (req, res) => {
+exports.updateProduct = async (req, res, next) => {
   try {
     const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
       runValidators: true,
@@ -62,12 +63,11 @@ exports.updateProduct = async (req, res) => {
       },
     });
   } catch (error) {
-    console.log(error);
-   
+    next(error);
   }
 };
 
-exports.deleteProduct = async (req, res) => {
+exports.deleteProduct = async (req, res, next) => {
   try {
     await Product.findByIdAndDelete(req.params.id);
 
@@ -76,6 +76,6 @@ exports.deleteProduct = async (req, res) => {
       message: "deleted",
     });
   } catch (error) {
-    console.log(error);
+    next(error);
   }
 };

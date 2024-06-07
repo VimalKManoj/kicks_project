@@ -13,13 +13,13 @@ import {
   shoe_background,
   shoes_2,
 } from "../assets";
-import { BackgroundCircles, BottomLine, Gradient } from "../design/Hero";
+import { BackgroundCircles } from "../design/Hero";
 import { ScrollParallax } from "react-just-parallax";
 import Button from "./Button";
 import Slider from "./swiper/Swiper";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-const Hero = () => {
+const Hero = ({link  , setLink}) => {
   const navigate = useNavigate();
   const parallaxRef = useRef(null);
   return (
@@ -166,8 +166,7 @@ const Hero = () => {
                     <img
                       src={air_jordan}
                       className="z-1 h-full w-full object-cover opacity-1 transition-opacity "
-                      // width={520}
-                      // height={400}
+                     
                       alt="Scary robot"
                     />
                   </div>
@@ -187,7 +186,7 @@ const Hero = () => {
                   >
                     <img
                       src={nike_air_force_1}
-                      className="z-1 absolute w-full object-cover xl:-translate-y-[15rem] hover:opacity-0 transition-opacity "
+                      className="z-1 absolute w-full object-cover -translate-y-[13rem] xl:-translate-y-[15rem] hover:opacity-0 transition-opacity "
                       width={650}
                       height={400}
                       alt="Scary robot"
@@ -195,7 +194,7 @@ const Hero = () => {
 
                     <img
                       src={nike_air_force_3}
-                      className="z-1 h-full w-full xl:-translate-y-[2rem] xl:h-auto object-cover opacity-1 transition-opacity "
+                      className="z-1 h-full w-full  xl:h-auto object-cover opacity-1 transition-opacity "
                       width={520}
                       // height={400}
                       alt="Scary robot"
@@ -213,15 +212,27 @@ const Hero = () => {
           </div>
         </div>
       </Section>
-      <Section>
-        <div className="container">
+      <Section className="relative ">
+        <div className="absolute right-0 left-0 top-16 container w-full bg-blue-300 h-20 overflow-hidden rotate-6 flex justify-between items-center h2 text-color-8">
+          <h6>LIFESTYLE</h6>
+          <h6>RUNNING</h6>
+          <h6>TRAINING</h6>
+          <h6>CASUAL</h6>
+        </div>
+        <div className="absolute right-0 left-0  top-5 container w-full bg-red-500 h-20 overflow-hidden -rotate-3  flex justify-between items-center h2 text-color-8"><h6>BASEBALL</h6>
+          <h6>GYM </h6>
+          <h6>WALKING</h6>
+          <h6>GOLF</h6></div>
+      </Section>
+      <Section id="brands">
+        <div className="container mt-5">
           <div className="h2 flex justify-between mb-10 ">
-            <h2>REVIEWS</h2>
-            <Button className=" bg-color-1 xl:hover:text-n-1">SEE ALL</Button>
+            <h2>BRANDS</h2>
+            {/* <Button className=" bg-color-1 xl:hover:text-n-1">SEE ALL</Button> */}
           </div>
         </div>
         <div className=" hidden lg:block">
-          <Slider slidesPerView={3} />
+          <Slider slidesPerView={3} setLink={setLink} link={link}/>
         </div>
 
         <div className="lg:hidden xl:hidden">

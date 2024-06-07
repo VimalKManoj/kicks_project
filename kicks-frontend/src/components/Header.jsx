@@ -1,17 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { kicks_logo_png } from "../assets";
 import Button from "./Button";
 import MenuSvg from "../assets/svg/MenuSvg";
 import { HamburgerMenu } from "../design/Header";
 import { enablePageScroll, disablePageScroll } from "scroll-lock";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ProfileDropdown from "./ProfileDropdown";
-import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const Header = ({ link, setLink }) => {
+const Header = ({ link, setLink , cartProd  ,setCartProd}) => {
+
+
+
+  useEffect(() => {
+    try {
+      const fetchProd = async () => {
+        
+        const response = await axios.get(
+          "http://localhost:3000/api/v1/users/getcart",
+          {
+            withCredentials: true,
+          }
+        );
+        setCartProd(response.data.cart);
+      };
+
+      fetchProd();
+    } catch (error) {
+      console.log(error);
+    } 
+  }, [cartProd]);
+
   const navigate = useNavigate()
   const [openNavigation, setOpenNavigation] = useState(false);
   const { currentUser, isLoggedIn } = useSelector((state) => state.user);
@@ -110,7 +132,7 @@ const Header = ({ link, setLink }) => {
             </div>
             <HamburgerMenu />
           </nav>
-          <Link to="/" className=" block w-[12rem] xl:mr-8">
+          <Link to="/" className=" block w-[12rem] xl:mr-32">
             <img src={kicks_logo_png} width={220} height={50} alt="Kicks" />
           </Link>
 
@@ -131,11 +153,12 @@ const Header = ({ link, setLink }) => {
                   className="hidden lg:flex relative font-code text-2xl uppercase ml-4 text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-6"
                   onClick={handleClick}
                 >
-                  <div className=" w-10 h-10 flex justify-center items-center rounded shadow-md ">
+                  <div className="relative w-10 h-10 flex justify-center items-center rounded shadow-md ">
+                  {cartProd && cartProd.length > 0 && <div className="flex justify-center items-center w-4 h-4  absolute -top-1 -right-1 bg-red-500 rounded-full text-[10px] text-white">{cartProd.length}</div>}
                     <ShoppingCartIcon />
                   </div>
                 </Link>
-                <Link
+                {/* <Link
                   to="/wishlist"
                   className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-6"
                   onClick={handleClick}
@@ -143,7 +166,7 @@ const Header = ({ link, setLink }) => {
                   <div className=" w-10 h-10 flex justify-center items-center rounded shadow-md mr-8">
                     <FavoriteIcon/>
                   </div>
-                </Link>
+                </Link> */}
               </>
             ) : (
               <>

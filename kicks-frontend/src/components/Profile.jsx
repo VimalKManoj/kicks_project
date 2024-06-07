@@ -76,6 +76,7 @@ const Profile = () => {
         }
       );
       dispatch(userDetails(response.data.user));
+      setUser(response.data.user);
       setIsLoading(false);
       setSuccess(true)
       setTimeout(()=>{

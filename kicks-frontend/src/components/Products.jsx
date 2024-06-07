@@ -132,27 +132,27 @@ const Products = ({ link, setLink }) => {
                       </Button>
                     </div>
                   </div>
-                  <div className=" top-1/2 left-1/2 w-full  border border-n-2/40  mb-3" />
+                  <div className=" top-1/2 left-1/2 w-full  border border-n-2/40  mb-3 " />
                   <div className="flex flex-col mb-3">
                     <h1 className=" font-semibold mb-3 cursor-default">
                       Brands
                     </h1>
-                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                    <a className="mb-1 cursor-pointer hover:text-color-1" onClick={brandFilter}>
                       Adidas
                     </a>
-                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                    <a className="mb-1 cursor-pointer hover:text-color-1" onClick={brandFilter}>
                       New Balance
                     </a>
-                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                    <a className="mb-1 cursor-pointer hover:text-color-1" onClick={brandFilter}>
                       Reebok
                     </a>
-                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                    <a className="mb-1 cursor-pointer hover:text-color-1" onClick={brandFilter}>
                       Nike
                     </a>
-                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                    <a className="mb-1 cursor-pointer hover:text-color-1" onClick={brandFilter}>
                       Asics
                     </a>
-                    <a className="mb-1 cursor-pointer" onClick={brandFilter}>
+                    <a className="mb-1 cursor-pointer hover:text-color-1" onClick={brandFilter}>
                       ANTA
                     </a>
                   </div>

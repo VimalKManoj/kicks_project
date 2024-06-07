@@ -9,16 +9,16 @@ import PersonIcon from '@mui/icons-material/Person';
 
 const ProfileDropdown = () => {
   const {currentUser }  = useSelector((state)=>state.user)
-  console.log(currentUser.user)
+
   const dispatch = useDispatch();
-  console.log(currentUser)
+ 
   const logoutUser = async () => {
     try {
       const res = await axios.get("http://localhost:3000/api/v1/users/logout", {
         withCredentials: true,
       });
       dispatch(setLoggedIn(false));
-      console.log(res);
+      
     } catch (error) {
       console.log(error);
     }
