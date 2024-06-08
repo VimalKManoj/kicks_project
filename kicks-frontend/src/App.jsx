@@ -13,7 +13,8 @@ import Signup from "./components/Signup";
 import Cart from "./components/Cart";
 import PaymentSuccess from "./components/PaymentSuccess";
 import PaymentFailure from "./components/PaymentFailure";
-
+import { Orders } from "./components/Orders";
+import UpdateData from "./components/UpdateData";
 
 const App = () => {
   const { isLoggedIn } = useSelector((state) => state.user);
@@ -23,29 +24,45 @@ const App = () => {
   return (
     <>
       <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
-        <Header setLink={setLink} link={link}  cartProd={cartProd} setCartProd={setCartProd}/>
+        <Header
+          setLink={setLink}
+          link={link}
+          cartProd={cartProd}
+          setCartProd={setCartProd}
+        />
         <Routes>
           <Route path="/" element={<Hero setLink={setLink} link={link} />} />
           <Route
             path="/products"
             element={<Products setLink={setLink} link={link} />}
           />
-          <Route path="/products/:id" element={<Product setCartProd={setCartProd}/>} />
+          <Route
+            path="/products/:id"
+            element={<Product setCartProd={setCartProd} />}
+          />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
 
-          <Route
-            path="/profile"
-            element={isLoggedIn ? <Profile /> : <Login />}
-          />
+          <Route path="/profile" element={isLoggedIn ? <Profile isLoggedIn={isLoggedIn}/> : <Login />}>
+            
+          </Route>
+          <Route path="/orders" element={isLoggedIn ? <Orders isLoggedIn={isLoggedIn}/> : <Login />} />
 
-          <Route path="/payment_success" element={ <PaymentSuccess /> } />
-          <Route path="/payment_failure" element={ <PaymentFailure /> } />
-          <Route path="/cart" element={isLoggedIn ? <Cart cartProd={cartProd} setCartProd={setCartProd} /> : <Login />} />
+          <Route path="/payment_success" element={<PaymentSuccess />} />
+          <Route path="/payment_failure" element={<PaymentFailure />} />
+          <Route
+            path="/cart"
+            element={
+              isLoggedIn ? (
+                <Cart cartProd={cartProd} setCartProd={setCartProd} />
+              ) : (
+                <Login />
+              )
+            }
+          />
         </Routes>
         <Footer />
-        
       </div>
     </>
   );

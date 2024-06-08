@@ -411,24 +411,35 @@ exports.createBooking = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-
 };
 
-
-exports.getOrders = async (req, res, next)=>{
-
+exports.getOrders = async (req, res, next) => {
   try {
-    const booking = await Booking.find({user : req.id});
+    const booking = await Booking.find({ user: req.id });
 
     if (!booking) {
       return res.status(404).json({ message: "No booking found!" });
     }
-
-  
-
-    res.status(200).json({ status: "success" ,booking});
+    const productIds = booking.map(order => order.products).flat().map(id => id.toString());
+    req.productIds = productIds;
+    req.orders = booking;
+    next();
   } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
+
+exports.getOrderedProducts = async (req, res, next) => {
+  try {
+    const productIds = req.productIds;
+    const bookings =req.orders
+    const products = await Product.find({ '_id': { $in: productIds } });
     
+
+    res.status(200).json({ status: "success", products , bookings});
+  } catch (error) {
+    console.log(error);
     next(error);
   }
 };

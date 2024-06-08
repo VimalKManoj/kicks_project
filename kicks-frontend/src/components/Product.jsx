@@ -29,6 +29,7 @@ const Product = () => {
       console.log(error);
     }
   }, [param.id]);
+  
 
   const handleCart = async () => {
     const response = await axios.post(

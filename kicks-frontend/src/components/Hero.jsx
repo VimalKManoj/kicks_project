@@ -4,7 +4,7 @@ import { ArrowDownRightIcon } from "@heroicons/react/24/solid";
 import {
   air_jordan,
   air_jordan_1,
-  new_balance_1,
+
   new_balance_2,
   new_balance_3,
   nike_air_force_1,
@@ -19,6 +19,8 @@ import Button from "./Button";
 import Slider from "./swiper/Swiper";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+
+
 const Hero = ({link  , setLink}) => {
   const navigate = useNavigate();
   const parallaxRef = useRef(null);

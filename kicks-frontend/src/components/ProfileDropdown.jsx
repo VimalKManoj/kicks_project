@@ -36,6 +36,14 @@ const ProfileDropdown = () => {
     {
       key: "2",
       label: (
+        <Link to="/orders" className="px-8">
+          My Orders
+        </Link>
+      ),
+    },
+    {
+      key: "3",
+      label: (
         <div className="px-8" onClick={logoutUser}>
           Logout
         </div>
