@@ -17,6 +17,8 @@ import { Orders } from "./components/Orders";
 import UpdateData from "./components/UpdateData";
 
 const App = () => {
+  const baseURL = 'http://localhost:3000/'
+  const frontendURL = 'http://localhost:5173/'
   const { isLoggedIn } = useSelector((state) => state.user);
   const [link, setLink] = useState("http://localhost:3000/api/v1/products");
   const [cartProd, setCartProd] = useState([]);

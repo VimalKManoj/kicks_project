@@ -29,6 +29,10 @@ exports.signUp = async (req, res, next) => {
       httpOnly: true,
     };
 
+    if (process.env.NODE_ENV === "production") {
+      (cookieOptions.secure = true), (cookieOptions.sameSite = "None");
+    }
+
     res
       .cookie("jwt", token, cookieOptions)
       .status(201)
@@ -64,6 +68,10 @@ exports.signIn = async (req, res, next) => {
       httpOnly: true,
     };
 
+    if (process.env.NODE_ENV === "production") {
+      (cookieOptions.secure = true), (cookieOptions.sameSite = "None");
+    }
+
     res
       .cookie("jwt", token, cookieOptions)
       .status(200)
@@ -76,10 +84,20 @@ exports.signIn = async (req, res, next) => {
 
 exports.verifyToken = (req, res, next) => {
   // Extracting the token from cookies
-  const cookies = req.headers.cookie;
-  const token = cookies
-    ? cookies.split(";").find((cookie) => cookie.trim().startsWith("jwt="))
-    : null;
+  let cookies;
+  let jwtToken;
+  let token
+  if (process.env.NODE_ENV === "production") {
+    token = req.cookies.jwt
+    jwtToken = req.cookies.jwt;
+  } else {
+    cookies = req.headers.cookie;
+    token = cookies
+      ? cookies.split(";").find((cookie) => cookie.trim().startsWith("jwt="))
+      : null;
+    jwtToken = token.split("=")[1];
+  }
+  
   // console.log(token);
 
   // If token is not present, return an error
@@ -87,7 +105,6 @@ exports.verifyToken = (req, res, next) => {
     return res.status(404).json({ message: "No token found" });
   }
 
-  const jwtToken = token.split("=")[1];
   // Verify the token
   jwt.verify(jwtToken, process.env.JWT_SECRET, (err, user) => {
     if (err) {
@@ -420,7 +437,10 @@ exports.getOrders = async (req, res, next) => {
     if (!booking) {
       return res.status(404).json({ message: "No booking found!" });
     }
-    const productIds = booking.map(order => order.products).flat().map(id => id.toString());
+    const productIds = booking
+      .map((order) => order.products)
+      .flat()
+      .map((id) => id.toString());
     req.productIds = productIds;
     req.orders = booking;
     next();
@@ -433,11 +453,10 @@ exports.getOrders = async (req, res, next) => {
 exports.getOrderedProducts = async (req, res, next) => {
   try {
     const productIds = req.productIds;
-    const bookings =req.orders
-    const products = await Product.find({ '_id': { $in: productIds } });
-    
+    const bookings = req.orders;
+    const products = await Product.find({ _id: { $in: productIds } });
 
-    res.status(200).json({ status: "success", products , bookings});
+    res.status(200).json({ status: "success", products, bookings });
   } catch (error) {
     console.log(error);
     next(error);
