@@ -6,12 +6,13 @@ const cookieParser = require('cookie-parser')
 
 const app = express();
 
-app.use(
-  cors({
-    origin: ["http://localhost:5173","https://kicks-project.vercel.app/"],
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: 'https://kicks-project.vercel.app', 
+  credentials: true,
+  exposedHeaders: ['Authorization'] 
+};
+
+app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser())
