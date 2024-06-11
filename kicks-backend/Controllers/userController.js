@@ -78,6 +78,7 @@ exports.signIn = async (req, res, next) => {
       .json({ status: "success", isLoggedIn: true, user });
   } catch (error) {
     // console.log(error);
+    console.log(error)
     next(error);
   }
 };
@@ -97,7 +98,7 @@ exports.verifyToken = (req, res, next) => {
       : null;
     jwtToken = token.split("=")[1];
   }
-  
+
   // console.log(token);
 
   // If token is not present, return an error
@@ -135,6 +136,7 @@ exports.getUser = async (req, res, next) => {
 
     res.status(200).json({ status: "success", data: user });
   } catch (error) {
+    console.log(error)
     next(error);
   }
 };
@@ -190,6 +192,7 @@ exports.resizeUserPhoto = async (req, res, next) => {
 
     next();
   } catch (error) {
+    console.log(error)
     next(error);
   }
 };
@@ -222,6 +225,7 @@ exports.updateMyData = async (req, res, next) => {
 
     res.status(200).json({ status: "success", user: updateUser });
   } catch (error) {
+    console.log(error)
     next(error);
   }
 };
@@ -240,7 +244,7 @@ exports.addToWishlist = async (req, res, next) => {
       data: updatedUser,
     });
   } catch (error) {
-    console.log(error);
+    console.log(error)
     next(error);
   }
 };
@@ -257,6 +261,7 @@ exports.removefromWishlist = async (req, res, next) => {
     res.status(200).json({ status: "success", removedList });
   } catch (error) {
     // console.log(error);
+    console.log(error)
     next(error);
   }
 };
@@ -274,6 +279,7 @@ exports.getWishlist = async (req, res, next) => {
     res.status(200).json({ status: "success", wishlist });
   } catch (error) {
     // console.log(error);
+    console.log(error)
     next(error);
   }
 };
@@ -293,6 +299,7 @@ exports.toCart = async (req, res, next) => {
     });
   } catch (error) {
     // console.log(error);
+    console.log(error)
     next(error);
   }
 };
@@ -309,6 +316,7 @@ exports.removefromCart = async (req, res, next) => {
     res.status(200).json({ status: "success", removedList });
   } catch (error) {
     // console.log(error);
+    console.log(error)
     next(error);
   }
 };
@@ -326,6 +334,7 @@ exports.getCart = async (req, res, next) => {
     res.status(200).json({ status: "success", cart });
   } catch (error) {
     // console.log(error);
+    console.log(error)
     next(error);
   }
 };
@@ -377,7 +386,8 @@ exports.checkout = async (req, res, next) => {
 
     res.status(200).json({ status: "success", session });
   } catch (error) {
-    console.log(error);
+    
+    console.log(error)
     next(error);
   }
 };
@@ -426,6 +436,7 @@ exports.createBooking = async (req, res, next) => {
 
     res.status(200).json({ status: "success", booking });
   } catch (error) {
+    console.log(error)
     next(error);
   }
 };
@@ -445,7 +456,8 @@ exports.getOrders = async (req, res, next) => {
     req.orders = booking;
     next();
   } catch (error) {
-    console.log(error);
+    
+    console.log(error)
     next(error);
   }
 };
@@ -458,7 +470,7 @@ exports.getOrderedProducts = async (req, res, next) => {
 
     res.status(200).json({ status: "success", products, bookings });
   } catch (error) {
-    console.log(error);
+    console.log(error)
     next(error);
   }
 };
