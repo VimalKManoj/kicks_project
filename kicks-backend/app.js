@@ -2,6 +2,7 @@ const express = require("express");
 const productRouter = require("./Routes/productRoutes");
 const userRouter = require("./Routes/userRoutes");
 const cors = require("cors");
+const cookieParser = require('cookie-parser')
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(
 );
 
 app.use(express.json());
+app.use(cookieParser())
 
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRouter);
