@@ -23,6 +23,7 @@ const Wishlist = ({setCartProd , cartProd}) => {
           }
         );
         setCartProd(response.data.cart);
+       
       };
 
       fetchProd();
@@ -31,8 +32,9 @@ const Wishlist = ({setCartProd , cartProd}) => {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [setCartProd]);
 
+  
   const handleCheckout =async ()=>{
     try {
       

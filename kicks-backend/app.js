@@ -2,20 +2,20 @@ const express = require("express");
 const productRouter = require("./Routes/productRoutes");
 const userRouter = require("./Routes/userRoutes");
 const cors = require("cors");
-const cookieParser = require('cookie-parser')
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
 const corsOptions = {
-  origin: 'https://kicks-project.vercel.app', 
+  origin: ["https://kicks-project.vercel.app","http://localhost:5173"],
   credentials: true,
-  exposedHeaders: ['Authorization'] 
+  exposedHeaders: ["Authorization"],
 };
 
 app.use(cors(corsOptions));
 
 app.use(express.json());
-app.use(cookieParser())
+app.use(cookieParser());
 
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/users", userRouter);

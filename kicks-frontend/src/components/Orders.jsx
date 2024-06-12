@@ -24,7 +24,7 @@ export const Orders = () => {
       console.log(error);
     }
   }, []);
-
+  
   return (
     <Section>
       <div className="container flex">
@@ -45,9 +45,8 @@ export const Orders = () => {
               {order.products.map((productId) => {
                 const product = orders.find((prod) => prod._id === productId);
                 return (
-                  <>
+                  <div key={productId}>
                     <div
-                      key={productId}
                       className="flex xl:flex-row flex-col xl:justify-around items-center flex-wrap"
                     >
                       <div className="w-[6rem] mb-10">
@@ -79,7 +78,7 @@ export const Orders = () => {
                       <h2 className="bg-green-400 rounded-3xl text-[12px] border border-green-900 text-green-900 mb-10 p-2">Processing</h2>
                     </div>
                     <div className=" top-1/2 left-1/2 w-full  border border-n-2/40  mb-10" />
-                  </>
+                  </div>
                 );
               })}
             </div>

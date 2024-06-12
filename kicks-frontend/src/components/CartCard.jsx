@@ -29,9 +29,10 @@ const CartCard = ({ products, setCartProd }) => {
     fetchCart();
   }, [dispatch]);
 
+  
   const handleRemoveWish = async () => {
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:3000/api/v1/users/removefromcart",
         { products },
         {
@@ -46,6 +47,7 @@ const CartCard = ({ products, setCartProd }) => {
       console.log(error);
     }
   };
+
 
   const handleCheckout =async ()=>{
     try {

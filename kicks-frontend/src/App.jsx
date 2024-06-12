@@ -22,6 +22,7 @@ const App = () => {
   const { isLoggedIn } = useSelector((state) => state.user);
   const [link, setLink] = useState("http://localhost:3000/api/v1/products");
   const [cartProd, setCartProd] = useState([]);
+  const [addToCart , setAddtoCart] = useState([])
 
   return (
     <>
@@ -31,6 +32,7 @@ const App = () => {
           link={link}
           cartProd={cartProd}
           setCartProd={setCartProd}
+          addToCart={addToCart}
         />
         <Routes>
           <Route path="/" element={<Hero setLink={setLink} link={link} />} />
@@ -40,7 +42,7 @@ const App = () => {
           />
           <Route
             path="/products/:id"
-            element={<Product setCartProd={setCartProd} />}
+            element={<Product setCartProd={setCartProd} setAddtoCart={setAddtoCart} addToCart={addToCart}/>}
           />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/signup" element={<Signup />} />

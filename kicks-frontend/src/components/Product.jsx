@@ -6,7 +6,7 @@ import Button from "./Button";
 import {useDispatch, useSelector } from "react-redux";
 import {  userDetails } from "../Redux/userSlice";
 
-const Product = () => {
+const Product = ({setAddtoCart ,addToCart}) => {
   const [product, setProduct] = useState({});
   const [mainImage, setMainImage] = useState("");
   const param = useParams();
@@ -32,14 +32,20 @@ const Product = () => {
   
 
   const handleCart = async () => {
-    const response = await axios.post(
-      "http://localhost:3000/api/v1/users/addtocart",
-      { products :product },
-      {
-        withCredentials: true,
-      }
-    );
-    dispatch(userDetails(response.data.data))
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/v1/users/addtocart",
+        { products :product },
+        {
+          withCredentials: true,
+        }
+      );
+      dispatch(userDetails(response.data.data))
+      setAddtoCart([...addToCart ,product.name])
+    } catch (error) {
+      console.log(error)
+    }
+    
   };
 
   const handleCheckout =async ()=>{

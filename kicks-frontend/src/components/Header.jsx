@@ -11,7 +11,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Header = ({ link, setLink , cartProd  ,setCartProd}) => {
+const Header = ({ link, setLink , cartProd  ,setCartProd ,addToCart}) => {
 
 
 
@@ -32,7 +32,7 @@ const Header = ({ link, setLink , cartProd  ,setCartProd}) => {
     } catch (error) {
       console.log(error);
     } 
-  }, [cartProd]);
+  }, [addToCart]);
 
   const navigate = useNavigate()
   const [openNavigation, setOpenNavigation] = useState(false);
@@ -199,4 +199,4 @@ const Header = ({ link, setLink , cartProd  ,setCartProd}) => {
 
 export default Header;
 
-// lg:mx-auto
+
