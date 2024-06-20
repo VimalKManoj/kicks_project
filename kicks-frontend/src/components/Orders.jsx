@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Section from "./Section";
 
-export const Orders = () => {
+export const Orders = ({baseURL}) => {
   const [orders, setOrders] = useState([]);
   const [orderedProducts, setOrderedProducts] = useState([]);
 
@@ -10,7 +10,7 @@ export const Orders = () => {
     try {
       const fetchProduct = async () => {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/users/getorders",
+          `${baseURL}api/v1/users/getorders`,
           {
             withCredentials: true,
           }

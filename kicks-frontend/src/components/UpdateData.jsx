@@ -5,7 +5,7 @@ import { useSelector ,useDispatch} from "react-redux";
 import { setLoggedIn, userDetails } from "../Redux/userSlice";
 import SimpleAlert from "./Alert";
 
-const UpdateData = () => {
+const UpdateData = ({baseURL}) => {
     const [user, setUser] = useState({});
     const [formData, setFormData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
@@ -16,7 +16,7 @@ const UpdateData = () => {
         const fetchUser = async () => {
           try {
             const response = await axios.get(
-              "http://localhost:3000/api/v1/users/profile",
+              `${baseURL}api/v1/users/profile`,
               {
                 withCredentials: true,
               }
@@ -64,7 +64,7 @@ const UpdateData = () => {
           formDataToSend.append("mobile", formData.mobile);
     
           const response = await axios.post(
-            "http://localhost:3000/api/v1/users/updateUserData",
+            `${baseURL}api/v1/users/updateUserData`,
             formDataToSend, 
             {
               withCredentials: true,

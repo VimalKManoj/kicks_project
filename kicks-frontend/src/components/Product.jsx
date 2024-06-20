@@ -6,19 +6,19 @@ import Button from "./Button";
 import {useDispatch, useSelector } from "react-redux";
 import {  userDetails } from "../Redux/userSlice";
 
-const Product = ({setAddtoCart ,addToCart}) => {
+const Product = ({setAddtoCart ,addToCart ,baseURL}) => {
   const [product, setProduct] = useState({});
   const [mainImage, setMainImage] = useState("");
   const param = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch()
-  const { currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const {  isLoggedIn } = useSelector((state) => state.user);
 
   useEffect(() => {
     try {
       const fetchProduct = async () => {
         const product = await axios.get(
-          `http://localhost:3000/api/v1/products/${param.id}`
+          `${baseURL}api/v1/products/${param.id}`
         );
         setProduct(product.data.product);
         setMainImage(product.data.product.images[0]);
@@ -34,7 +34,7 @@ const Product = ({setAddtoCart ,addToCart}) => {
   const handleCart = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/v1/users/addtocart",
+        `${baseURL}api/v1/users/addtocart`,
         { products :product },
         {
           withCredentials: true,
@@ -51,7 +51,7 @@ const Product = ({setAddtoCart ,addToCart}) => {
   const handleCheckout =async ()=>{
     try {
       const productArray = [product]
-      const response = await axios.post("http://localhost:3000/api/v1/users/checkout",{products :productArray},
+      const response = await axios.post(`${baseURL}api/v1/users/checkout`,{products :productArray},
           {
             withCredentials: true,
           })

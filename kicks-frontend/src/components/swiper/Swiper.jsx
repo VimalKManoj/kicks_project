@@ -11,7 +11,7 @@ import "./styles.css";
 import { Pagination } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 
-export default function Slider({ slidesPerView ,setLink , link}) {
+export default function Slider({ slidesPerView ,setLink ,baseURL}) {
   const navigate = useNavigate();
   return (
     <>
@@ -28,7 +28,7 @@ export default function Slider({ slidesPerView ,setLink , link}) {
       >
         <SwiperSlide>
           <div className="h-full w-full relative overflow-hidden rounded" onClick={() => {
-              setLink("http://localhost:3000/api/v1/products?brand=Adidas")
+              setLink(`${baseURL}api/v1/products?brand=Adidas`)
               navigate('/products');
 
             }}>
@@ -49,7 +49,7 @@ export default function Slider({ slidesPerView ,setLink , link}) {
         </SwiperSlide>
         <SwiperSlide>
           <div className="h-full w-full relative overflow-hidden rounded" onClick={() => {
-              setLink("http://localhost:3000/api/v1/products?brand=Nike")
+              setLink(`${baseURL}api/v1/products?brand=Nike`)
               navigate('/products');
 
             }}>
@@ -70,7 +70,7 @@ export default function Slider({ slidesPerView ,setLink , link}) {
         </SwiperSlide>
         <SwiperSlide>
           <div className="h-full w-full relative overflow-hidden rounded" onClick={() => {
-              setLink("http://localhost:3000/api/v1/products?brand=Reebok")
+              setLink(`${baseURL}api/v1/products?brand=Reebok`)
               navigate('/products');
 
             }}>
@@ -91,7 +91,7 @@ export default function Slider({ slidesPerView ,setLink , link}) {
         </SwiperSlide>
         <SwiperSlide>
           <div className="h-full w-full relative overflow-hidden rounded" onClick={() => {
-              setLink("http://localhost:3000/api/v1/products?brand=New Balance")
+              setLink(`${baseURL}api/v1/products?brand=New Balance`)
               navigate('/products');
 
             }}>
@@ -114,7 +114,7 @@ export default function Slider({ slidesPerView ,setLink , link}) {
           <div
             className="h-full w-full relative overflow-hidden rounded"
             onClick={() => {
-              setLink("http://localhost:3000/api/v1/products?brand=Asics")
+              setLink(`${baseURL}api/v1/products?brand=Asics`)
               navigate('/products');
 
             }}
@@ -136,7 +136,7 @@ export default function Slider({ slidesPerView ,setLink , link}) {
         </SwiperSlide>
         <SwiperSlide>
           <div className="h-full w-full relative overflow-hidden rounded" onClick={() => {
-              setLink("http://localhost:3000/api/v1/products?brand=ANTA")
+              setLink(`${baseURL}api/v1/products?brand=ANTA`)
               navigate('/products');
 
             }}>

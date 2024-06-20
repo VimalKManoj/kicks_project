@@ -6,7 +6,7 @@ import axios from "axios";
 import { setLoggedIn , userDetails } from "../Redux/userSlice";
 import {useDispatch } from "react-redux";
 
-const Login = () => {
+const Login = ({baseURL}) => {
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const newUser = await axios.post(
-        "http://localhost:3000/api/v1/users/signin",
+        `${baseURL}api/v1/users/signin`,
         { ...formData },
         {
           withCredentials: true,

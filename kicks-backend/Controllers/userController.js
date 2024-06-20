@@ -380,8 +380,8 @@ exports.checkout = async (req, res, next) => {
       line_items: lineItems,
       mode: "payment",
       success_url:
-        "http://localhost:5173/payment_success?session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "http://localhost:5173/payment_failure",
+        "https://kicks-project.vercel.app/payment_success?session_id={CHECKOUT_SESSION_ID}",
+      cancel_url: "https://kicks-project.vercel.app/payment_failure",
     });
 
     res.status(200).json({ status: "success", session });

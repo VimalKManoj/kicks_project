@@ -3,11 +3,11 @@ import { Button, Dropdown, Space } from 'antd';
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 
 
-const items = (setLink) =>[
+const items = (setLink ,baseURL) =>[
     {
       key: '1',
       label: (
-        <div onClick={()=>{setLink(`http://localhost:3000/api/v1/products?sort=-price`)}}>
+        <div onClick={()=>{setLink(`${baseURL}api/v1/products?sort=-price`)}}>
          Price : High to Low
         </div>
       ),
@@ -15,20 +15,20 @@ const items = (setLink) =>[
     {
       key: '2',
       label: (
-        <div onClick={()=>{setLink(`http://localhost:3000/api/v1/products?sort=price`)}}>
+        <div onClick={()=>{setLink(`${baseURL}api/v1/products?sort=price`)}}>
           Price : Low to High
         </div>
       ),
     },
   ];
 
-const SortByDrop = ({setLink}) => {
+const SortByDrop = ({setLink ,baseURL}) => {
   return (
     <Space direction="vertical">
     <Space wrap>
       <Dropdown
         menu={{
-          items :items(setLink),
+          items :items(setLink ,baseURL),
         }}
         placement="bottom"
       >

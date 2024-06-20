@@ -6,19 +6,19 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { userDetails, setCart } from "../Redux/userSlice";
 
-const CartCard = ({ products, setCartProd }) => {
+const CartCard = ({ products, setCartProd ,baseURL}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchCart = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/v1/users/getcart",
+          `${baseURL}api/v1/users/getcart`,
           {
             withCredentials: true,
           }
         );
-        // console.log(response.data.cart);
+        
 
         dispatch(setCart(response.data.cart));
       } catch (error) {
@@ -33,7 +33,7 @@ const CartCard = ({ products, setCartProd }) => {
   const handleRemoveWish = async () => {
     try {
       await axios.post(
-        "http://localhost:3000/api/v1/users/removefromcart",
+        `${baseURL}api/v1/users/removefromcart`,
         { products },
         {
           withCredentials: true,
@@ -52,7 +52,7 @@ const CartCard = ({ products, setCartProd }) => {
   const handleCheckout =async ()=>{
     try {
       const productArray = [products]
-      const response = await axios.post("http://localhost:3000/api/v1/users/checkout",{products :productArray},
+      const response = await axios.post(`${baseURL}api/v1/users/checkout`,{products :productArray},
           {
             withCredentials: true,
           })

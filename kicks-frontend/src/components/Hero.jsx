@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 
-const Hero = ({link  , setLink}) => {
+const Hero = ({link  , setLink , baseURL }) => {
   const navigate = useNavigate();
   const parallaxRef = useRef(null);
   return (
@@ -234,7 +234,7 @@ const Hero = ({link  , setLink}) => {
           </div>
         </div>
         <div className=" hidden lg:block">
-          <Slider slidesPerView={3} setLink={setLink} link={link}/>
+          <Slider slidesPerView={3} setLink={setLink} link={link} baseURL={baseURL}/>
         </div>
 
         <div className="lg:hidden xl:hidden">

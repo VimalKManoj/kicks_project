@@ -11,7 +11,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const Header = ({ link, setLink , cartProd  ,setCartProd ,addToCart}) => {
+const Header = ({ setLink , cartProd  ,setCartProd ,addToCart ,baseURL ,frontendURL}) => {
 
 
 
@@ -20,7 +20,7 @@ const Header = ({ link, setLink , cartProd  ,setCartProd ,addToCart}) => {
       const fetchProd = async () => {
         
         const response = await axios.get(
-          "http://localhost:3000/api/v1/users/getcart",
+          `${baseURL}api/v1/users/getcart`,
           {
             withCredentials: true,
           }
@@ -36,7 +36,7 @@ const Header = ({ link, setLink , cartProd  ,setCartProd ,addToCart}) => {
 
   const navigate = useNavigate()
   const [openNavigation, setOpenNavigation] = useState(false);
-  const { currentUser, isLoggedIn } = useSelector((state) => state.user);
+  const {  isLoggedIn } = useSelector((state) => state.user);
 
   const navElementClassMobile = `block relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1 lg:hidden px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold `;
   const navElementClassLarge = `block relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.25 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-12`;
@@ -52,8 +52,8 @@ const Header = ({ link, setLink , cartProd  ,setCartProd ,addToCart}) => {
   };
 
   const handleClick = (e) => {
-    if (e.target.href === "http://localhost:5173/products")
-      setLink("http://localhost:3000/api/v1/products");
+    if (e.target.href === `${frontendURL}products`)
+      setLink(`${baseURL}api/v1/products`);
     if (!openNavigation) return;
 
     enablePageScroll();
@@ -139,7 +139,7 @@ const Header = ({ link, setLink , cartProd  ,setCartProd ,addToCart}) => {
           <div className="relative z-2 flex flex-row items-center  lg:flex-row ">
             {isLoggedIn ? (
               <>
-                <ProfileDropdown > 
+                <ProfileDropdown  baseURL={baseURL}> 
                   <Link
                     to="/profile"
                     className="hidden lg:flex relative font-code text-2xl uppercase text-n-8 transition-colors hover:text-color-1  px-6 py-6 md:py-8 lg:-mr-0.4 lg:text-sm lg:font-semibold cursor-pointer lg:leading-5 lg:hover-text-n-1 xl:px-6"

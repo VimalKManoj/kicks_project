@@ -9,7 +9,7 @@ import Button from "./Button";
 import { motion } from "framer-motion";
 import SortByDrop from "./SortByDrop";
 
-const Products = ({ link, setLink }) => {
+const Products = ({ link, setLink ,baseURL}) => {
   const [products, setProducts] = useState([]);
   const [reset, setReset] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,13 +18,13 @@ const Products = ({ link, setLink }) => {
   const filtering = (e) => {
     const value = e.target.innerText.toLowerCase();
 
-    setLink(`http://localhost:3000/api/v1/products?category=${value}`);
+    setLink(`${baseURL}api/v1/products?category=${value}`);
     setReset(true);
   };
 
   const brandFilter = (e) => {
     const value = e.target.innerText;
-    setLink(`http://localhost:3000/api/v1/products?brand=${value}`);
+    setLink(`${baseURL}api/v1/products?brand=${value}`);
     setReset(true);
   };
 
@@ -73,7 +73,7 @@ const Products = ({ link, setLink }) => {
                   <TuneSharpIcon sx={{ fontSize: 20 }} />
                 </h1>
                 <h1 className=" cursor-pointer select-none ">
-                  <SortByDrop setLink={setLink} />
+                  <SortByDrop setLink={setLink} baseURL={baseURL}/>
                 </h1>
               </div>
 
@@ -95,7 +95,7 @@ const Products = ({ link, setLink }) => {
                         <h1
                           className="h5 text-xl mb-3 font-normal cursor-pointer"
                           onClick={() => {
-                            setLink(`http://localhost:3000/api/v1/products`);
+                            setLink(`${baseURL}api/v1/products`);
                             setReset(false);
                           }}
                         >

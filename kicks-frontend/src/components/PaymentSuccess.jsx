@@ -5,7 +5,7 @@ import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 
 
-const PaymentSuccess = () => {
+const PaymentSuccess = ({baseURL}) => {
     const navigate = useNavigate()
     const location = useLocation()
     const queryParams =new URLSearchParams(location.search)
@@ -14,7 +14,7 @@ const PaymentSuccess = () => {
     useEffect(()=>{
       const sendSession = async () =>{
 
-        const response = await axios.post("http://localhost:3000/api/v1/users/createbooking",{sessionID},
+        const response = await axios.post(`${baseURL}api/v1/users/createbooking`,{sessionID},
           {
             withCredentials: true,
           })

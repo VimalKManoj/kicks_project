@@ -9,7 +9,7 @@ import { setLoggedIn, userDetails } from "../Redux/userSlice";
 import { useDispatch } from "react-redux";
 
 
-const Signup = () => {
+const Signup = ({baseURL}) => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +25,7 @@ const Signup = () => {
     setIsLoading(true);
     try {
       const newUser = await axios.post(
-        "http://localhost:3000/api/v1/users/signup",
+        `${baseURL}api/v1/users/signup`,
         { ...formData },
         {
           withCredentials: true,

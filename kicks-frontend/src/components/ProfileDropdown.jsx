@@ -7,14 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setLoggedIn , userDetails } from "../Redux/userSlice";
 import PersonIcon from '@mui/icons-material/Person';
 
-const ProfileDropdown = () => {
+const ProfileDropdown = ({baseURL}) => {
   const {currentUser }  = useSelector((state)=>state.user)
 
   const dispatch = useDispatch();
  
   const logoutUser = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/api/v1/users/logout", {
+      const res = await axios.get(`${baseURL}api/v1/users/logout`, {
         withCredentials: true,
       });
       dispatch(setLoggedIn(false));

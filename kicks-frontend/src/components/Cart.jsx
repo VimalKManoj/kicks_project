@@ -6,7 +6,7 @@ import Loading from "./Loading";
 import { useNavigate ,redirect } from "react-router-dom";
 import CartCard from "./CartCard";
 
-const Wishlist = ({setCartProd , cartProd}) => {
+const Wishlist = ({setCartProd , cartProd ,baseURL}) => {
   
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const Wishlist = ({setCartProd , cartProd}) => {
       const fetchProd = async () => {
         setIsLoading(true);
         const response = await axios.get(
-          "http://localhost:3000/api/v1/users/getcart",
+          `${baseURL}api/v1/users/getcart`,
           {
             withCredentials: true,
           }
@@ -38,7 +38,7 @@ const Wishlist = ({setCartProd , cartProd}) => {
   const handleCheckout =async ()=>{
     try {
       
-      const response = await axios.post("http://localhost:3000/api/v1/users/checkout",{products :cartProd},
+      const response = await axios.post(`${baseURL}api/v1/users/checkout`,{products :cartProd},
           {
             withCredentials: true,
           })
@@ -77,6 +77,7 @@ const Wishlist = ({setCartProd , cartProd}) => {
                       key={item._id}
                       products={item}
                       setCartProd={setCartProd}
+                      baseURL={baseURL}
                     />
                   ))}
                 </div>

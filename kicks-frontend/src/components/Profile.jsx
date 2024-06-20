@@ -1,11 +1,11 @@
 import Section from "./Section";
 import UpdateData from "./UpdateData";
 
-const Profile = () => {
+const Profile = ({baseURL}) => {
   return (
     <Section>
       <div className="container flex">
-        <UpdateData />
+        <UpdateData baseURL={baseURL} />
       </div>
     </Section>
   );

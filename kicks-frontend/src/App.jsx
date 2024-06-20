@@ -17,51 +17,80 @@ import { Orders } from "./components/Orders";
 import UpdateData from "./components/UpdateData";
 
 const App = () => {
-  const baseURL = 'http://localhost:3000/'
-  const frontendURL = 'http://localhost:5173/'
+  const baseURL = "https://kicks-project-backend.vercel.app/";
+  const frontendURL = "https://kicks-project.vercel.app/";
   const { isLoggedIn } = useSelector((state) => state.user);
-  const [link, setLink] = useState("http://localhost:3000/api/v1/products");
+  const [link, setLink] = useState(`${baseURL}api/v1/products`);
   const [cartProd, setCartProd] = useState([]);
-  const [addToCart , setAddtoCart] = useState([])
+  const [addToCart, setAddtoCart] = useState([]);
 
   return (
     <>
       <div className="pt-[4.75rem] lg:pt-[5.25rem] overflow-hidden">
         <Header
           setLink={setLink}
-          link={link}
           cartProd={cartProd}
           setCartProd={setCartProd}
           addToCart={addToCart}
+          baseURL={baseURL}
+          frontendURL={frontendURL}
         />
         <Routes>
-          <Route path="/" element={<Hero setLink={setLink} link={link} />} />
+          <Route
+            path="/"
+            element={<Hero setLink={setLink} link={link} baseURL={baseURL} />}
+          />
           <Route
             path="/products"
-            element={<Products setLink={setLink} link={link} />}
+            element={
+              <Products setLink={setLink} link={link} baseURL={baseURL} />
+            }
           />
           <Route
             path="/products/:id"
-            element={<Product setCartProd={setCartProd} setAddtoCart={setAddtoCart} addToCart={addToCart}/>}
+            element={
+              <Product
+                setCartProd={setCartProd}
+                setAddtoCart={setAddtoCart}
+                addToCart={addToCart}
+                baseURL={baseURL}
+              />
+            }
           />
           <Route path="/reviews" element={<Reviews />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup baseURL={baseURL} />} />
+          <Route path="/login" element={<Login baseURL={baseURL} />} />
 
-          <Route path="/profile" element={isLoggedIn ? <Profile isLoggedIn={isLoggedIn}/> : <Login />}>
-            
-          </Route>
-          <Route path="/orders" element={isLoggedIn ? <Orders isLoggedIn={isLoggedIn}/> : <Login />} />
+          <Route
+            path="/profile"
+            element={
+              isLoggedIn ? (
+                <Profile isLoggedIn={isLoggedIn} baseURL={baseURL} />
+              ) : (
+                <Login baseURL={baseURL} />
+              )
+            }
+          ></Route>
+          <Route
+            path="/orders"
+            element={
+              isLoggedIn ? (
+                <Orders isLoggedIn={isLoggedIn} baseURL={baseURL} />
+              ) : (
+                <Login baseURL={baseURL} />
+              )
+            }
+          />
 
-          <Route path="/payment_success" element={<PaymentSuccess />} />
-          <Route path="/payment_failure" element={<PaymentFailure />} />
+          <Route path="/payment_success" element={<PaymentSuccess baseURL={baseURL}/>} />
+          <Route path="/payment_failure" element={<PaymentFailure baseURL={baseURL}/>} />
           <Route
             path="/cart"
             element={
               isLoggedIn ? (
-                <Cart cartProd={cartProd} setCartProd={setCartProd} />
+                <Cart cartProd={cartProd} setCartProd={setCartProd} baseURL={baseURL}/>
               ) : (
-                <Login />
+                <Login baseURL={baseURL}/>
               )
             }
           />
