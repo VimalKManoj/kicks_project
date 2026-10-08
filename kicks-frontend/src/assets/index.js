@@ -12,7 +12,7 @@ import nike_just_do_it from "./nike_just_do_it.png"
 import check from "./check.svg";
 
 import play from "./play.svg";
-import gradient from "./gradient.png";
+import gradient from "./gradient.webp";
 import smallSphere from "./4-small.png";
 import grid from "./grid.png";
 import check2 from "./check-02.svg";
@@ -30,7 +30,7 @@ import sliders04 from "./sliders-04.svg";
 import loading from "./loading.png";
 import shoe_background from "./shoe_background.jpg";
 import shoe_1 from "./shoe_1.jpg";
-import shoes_2 from "./shoe_2.png";
+import shoes_2 from "./shoe_2.webp";
 
 import lines from "./pricing/lines.svg";
 import stars from "./pricing/stars.svg";

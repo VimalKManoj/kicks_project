@@ -61,7 +61,7 @@ export default function Slider({ slidesPerView ,setLink ,baseURL}) {
               {/* backdrop-blur-sm */}
               <div className="h-[10rem] w-[18rem]">
                 <img
-                  src="/brands/nike_logo.png"
+                  src="/brands/nike_logo.webp"
                   className=" h-full w-full object-cover "
                 />
               </div>
